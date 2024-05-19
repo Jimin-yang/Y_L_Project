@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="#3F3F3F"
+    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+    android:elevation="4dp">
+
+    <!-- 텍스트뷰 추가 -->
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="헬스"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
+    <!-- 드롭다운 아이콘 추가 -->
+    <ImageView
+        android:id="@+id/dropdown_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:src="@drawable/baseline_arrow_drop_down_24"
+        android:layout_marginStart="8dp"
+        android:contentDescription="드롭다운 아이콘" />
+
+    <!-- 설정 아이콘 추가 -->
+    <ImageView
+        android:id="@+id/settings_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:src="@drawable/baseline_build_24"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="설정 아이콘" />
+
+    <!-- 메뉴 아이콘 추가 -->
+    <ImageView
+        android:id="@+id/menu_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:src="@drawable/ic_menu"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="메뉴 아이콘" />
+
+</androidx.appcompat.widget.Toolbar>
