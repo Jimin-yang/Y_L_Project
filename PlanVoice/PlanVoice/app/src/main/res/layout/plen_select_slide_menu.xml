@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/baseline_arrow_back_ios_24" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="플랜 선택"
+            android:textSize="20dp"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"  />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:text="개인 맞춤형 플랜"
+                    android:textColor="@color/white" />
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+
+                        >
+                        <Button
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="취약 부위 보완 플랜"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button_text_rounded_background"
+                            />
+
+                        <Button
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="취약 부위 보완 플랜"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button_text_rounded_background"
+                            />
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:text="선택된 플랜"
+                    android:textColor="@color/white"
+                    />
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+
+                        >
+                        <Button
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="근육량 증가 추천 플랜 (초급)"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button_text_rounded_background"
+                            />
+
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:text="근육량 증가"
+                    android:textColor="@color/white"
+                    />
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+
+                        >
+                        <Button
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="근육량 증가 추천 플랜 (입문)"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button_text_rounded_background"
+                            />
+
+                        <Button
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="근육량 증가 추천 플랜 (초급)"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button_text_rounded_background"
+                            />
+
+                        <Button
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="근육량 증가 추천 플랜 (중급)"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button_text_rounded_background"
+                            />
+                        <Button
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="근육량 증가 추천 플랜 (고급)"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button_text_rounded_background"
+                            />
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:text="체지방 감소"
+                    android:textColor="@color/white"
+                    />
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+
+                        >
+                        <Button
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="체지방 감소 추천 플랜 (입문)"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button_text_rounded_background"
+                            />
+
+                        <Button
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="체지방 감소 추천 플랜 (초급)"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button_text_rounded_background"
+                            />
+                        <Button
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="체지방 감소 추천 플랜 (중급)"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button_text_rounded_background"
+                            />
+                        <Button
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="체지방 감소 추천 플랜 (고급)"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button_text_rounded_background"
+                            />
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:text="현재 상태 유지"
+                    android:textColor="@color/white"
+                    />
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+
+                        >
+                        <Button
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="현재 상태 유지 플랜 (입문)"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button_text_rounded_background"
+                            />
+
+                        <Button
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="현재 상태 유지 플랜 (초급)"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button_text_rounded_background"
+                            />
+                        <Button
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="현재 상태 유지 플랜 (중급)"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button_text_rounded_background"
+                            />
+                        <Button
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="현재 상태 유지 플랜 (고급)"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button_text_rounded_background"
+                            />
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+        
+"
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:gravity="center">
+        <ImageButton
+            android:background="@color/ic_planvoice_background"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/baseline_arrow_back_ios_24" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="운동 목록"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"  />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/edit_text_rounded_background"
+                android:gravity="center">
+                <ImageView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/baseline_search_24"
+                    />
+                <EditText
+                    android:inputType="textPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="운동 이름으로 검색해주세요."
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:textSize="14dp"
+                    android:textColor="#897E7E"
+                    android:textColorHint="#897E7E"
+                    android:id="@+id/pwText"
+                    />
+
+
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="60dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="5dp"
+                        android:text="즐겨찾기"
+                        android:textSize="12dp"
+                        android:textColor="#897E7E"
+                        android:background="@drawable/edit_text_rounded_background"   />
+                    <Button
+                        android:layout_width="45dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="5dp"
+                        android:text="가슴"
+                        android:textSize="12dp"
+                        android:textColor="#897E7E"
+                        android:background="@drawable/edit_text_rounded_background"   />
+                    <Button
+                        android:layout_width="45dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="5dp"
+                        android:text="등"
+                        android:textSize="12dp"
+                        android:textColor="#897E7E"
+                        android:background="@drawable/edit_text_rounded_background"   />
+                    <Button
+                        android:layout_width="45dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="5dp"
+                        android:text="하체"
+                        android:textSize="12dp"
+                        android:textColor="#897E7E"
+                        android:background="@drawable/edit_text_rounded_background"   />
+                    <Button
+                        android:layout_width="45dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="5dp"
+                        android:text="어깨"
+                        android:textSize="12dp"
+                        android:textColor="#897E7E"
+                        android:background="@drawable/edit_text_rounded_background"   />
+                    <Button
+                        android:layout_width="45dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="5dp"
+                        android:text="이두"
+                        android:textSize="12dp"
+                        android:textColor="#897E7E"
+                        android:background="@drawable/edit_text_rounded_background"   />
+                    <Button
+                        android:layout_width="45dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="5dp"
+                        android:text="코어"
+                        android:textSize="12dp"
+                        android:textColor="#897E7E"
+                        android:background="@drawable/edit_text_rounded_background"   />
+                    <Button
+                        android:layout_width="45dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="5dp"
+                        android:text="전완근"
+                        android:textSize="12dp"
+                        android:textColor="#897E7E"
+                        android:background="@drawable/edit_text_rounded_background"   />
+                    <Button
+                        android:layout_width="45dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="5dp"
+                        android:text="유산소"
+                        android:textSize="12dp"
+                        android:textColor="#897E7E"
+                        android:background="@drawable/edit_text_rounded_background"   />
+                    <Button
+                        android:layout_width="45dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="5dp"
+                        android:text="삼두"
+                        android:textSize="12dp"
+                        android:textColor="#897E7E"
+                        android:background="@drawable/edit_text_rounded_background"   />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/bench_press"
+                        />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:textSize="16dp"
+                            android:text="벤치 프레스"
+                            android:textColor="@color/white"  />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dp"
+                            android:text="전반적인 가슴 자극"
+                            android:textColor="@color/white"  />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"  />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/baseline_favorite_border_24"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#897E7E"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/bench_press"
+                        />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:textSize="16dp"
+                            android:text="벤치 프레스"
+                            android:textColor="@color/white"  />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dp"
+                            android:text="전반적인 가슴 자극"
+                            android:textColor="@color/white"  />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"  />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/baseline_favorite_border_24"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#897E7E"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/bench_press"
+                        />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:textSize="16dp"
+                            android:text="벤치 프레스"
+                            android:textColor="@color/white"  />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dp"
+                            android:text="전반적인 가슴 자극"
+                            android:textColor="@color/white"  />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"  />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/baseline_favorite_border_24"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#897E7E"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/bench_press"
+                        />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:textSize="16dp"
+                            android:text="벤치 프레스"
+                            android:textColor="@color/white"  />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dp"
+                            android:text="전반적인 가슴 자극"
+                            android:textColor="@color/white"  />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"  />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/baseline_favorite_border_24"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#897E7E"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        "
+    </ScrollView>
+
+</LinearLayout>
