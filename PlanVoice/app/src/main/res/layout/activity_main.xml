@@ -68,24 +68,29 @@
                 android:layout_height="wrap_content"
                 app:cardElevation="4dp"
                 app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="#5c5c5c"
                 android:layout_marginBottom="16dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tv_categories"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="운동부위: 가슴, 삼두, 유산소" />
+                        android:text="운동부위: 가슴, 삼두, 유산소"
+                        android:textColor="@color/white"
+                        />
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         app:cardCornerRadius="8dp"
+                        app:cardBackgroundColor="#5c5c5c"
                         app:cardElevation="4dp">
 
                         <LinearLayout
@@ -93,6 +98,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:padding="16dp"
+
                             android:weightSum="3">
 
                             <LinearLayout
@@ -111,7 +117,9 @@
                                     android:id="@+id/tv_exercise_count"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="6개의 운동" />
+                                    android:text="6개의 운동"
+                                    android:textColor="@color/white"
+                                    />
                             </LinearLayout>
 
                             <LinearLayout
@@ -130,7 +138,8 @@
                                     android:id="@+id/time_exercise_count"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="6개의 운동" />
+                                    android:text="6개의 운동"
+                                    android:textColor="@color/white"/>
                             </LinearLayout>
 
                             <LinearLayout
@@ -143,13 +152,15 @@
                                 <ImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/baseline_access_fire_24" />
+                                    android:src="@drawable/baseline_local_fire_department_24" />
 
                                 <TextView
                                     android:id="@+id/kcal_exercise_count"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="709kcal" />
+                                    android:text="709kcal"
+                                    android:textColor="@color/white"
+                                    />
                             </LinearLayout>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>

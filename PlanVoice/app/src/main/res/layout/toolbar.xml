@@ -28,7 +28,9 @@
         android:contentDescription="드롭다운 아이콘" />
 
     <!-- 설정 아이콘 추가 -->
-    <ImageView
+    <ImageButton
+
+        android:background="@color/background"
         android:id="@+id/settings_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +40,8 @@
         android:contentDescription="설정 아이콘" />
 
     <!-- 메뉴 아이콘 추가 -->
-    <ImageView
+    <ImageButton
+        android:background="@color/background"
         android:id="@+id/menu_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

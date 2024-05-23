@@ -2,7 +2,9 @@ package com.example.planvoice;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.CheckBox;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -18,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BottomNavigationView navView = findViewById(R.id.navigation);
-
-
         navView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.navigation_home) {
@@ -37,6 +37,32 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
+        Button startBTN = findViewById(R.id.btn_start_workout);
+        startBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RoutineActivity.class);
+                startActivity(intent);
+            }
+        });
+        ImageButton menuBTN  = findViewById(R.id.toolbar).findViewById(R.id.menu_icon);
+        menuBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // signin 시작
+                Intent intent = new Intent(MainActivity.this, Exercise_list_Activity.class);
+                startActivity(intent);
+            }
+        });
+        ImageButton settingBTN  = findViewById(R.id.toolbar).findViewById(R.id.settings_icon);
+        settingBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // signin 시작
+                Intent intent = new Intent(MainActivity.this, Plen_select_Activity.class);
 
+                startActivity(intent);
+            }
+        });
     }
 }
