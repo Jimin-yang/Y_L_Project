@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_planvoice"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_planvoice_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.Splash"
+        tools:targetApi="31">
+        <activity
+            android:name=".Exercise_list_Activity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.toolbar"/>
+        <activity
+            android:name=".Plen_select_Activity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.toolbar" />
+        <activity
+            android:name=".RoutineActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.toolbar" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StatisticsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SigninActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InformationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
