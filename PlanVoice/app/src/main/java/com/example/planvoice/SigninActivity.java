@@ -2,6 +2,7 @@ package com.example.planvoice;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -86,8 +87,44 @@ public class SigninActivity extends AppCompatActivity {
         String phone = phoneEditText.getText().toString();
         String gender = ((RadioButton) findViewById(genderRadioGroup.getCheckedRadioButtonId())).getText().toString();
 
+        if (id.isEmpty()) {
+            Toast.makeText(SigninActivity.this, "아이디를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (password.isEmpty()) {
+            Toast.makeText(SigninActivity.this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (password.length() < 8) {
+            Toast.makeText(SigninActivity.this, "비밀번호는 8자리 이상이어야 합니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (!password.equals(confirmPassword)) {
-            Toast.makeText(SigninActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SigninActivity.this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (name.isEmpty()) {
+            Toast.makeText(SigninActivity.this, "이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (age.isEmpty()) {
+            Toast.makeText(SigninActivity.this, "나이를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (height.isEmpty()) {
+            Toast.makeText(SigninActivity.this, "키를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (weight.isEmpty()) {
+            Toast.makeText(SigninActivity.this, "몸무게를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(SigninActivity.this, "유효한 이메일 주소를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (phone.isEmpty()) {
+            Toast.makeText(SigninActivity.this, "전화번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -102,7 +139,7 @@ public class SigninActivity extends AppCompatActivity {
                     try {
                         String errorBody = response.errorBody().string();
                         Log.e("SigninActivity", "Response error: " + errorBody);
-                        Toast.makeText(SigninActivity.this, "Failed to register: " + errorBody, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SigninActivity.this, "회원가입 실패: " + errorBody, Toast.LENGTH_SHORT).show();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -112,7 +149,7 @@ public class SigninActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
                 Log.e("SigninActivity", "Failure: " + t.getMessage());
-                Toast.makeText(SigninActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SigninActivity.this, "오류 발생: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
