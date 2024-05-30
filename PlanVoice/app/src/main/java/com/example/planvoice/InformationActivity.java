@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,11 +12,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.planvoice.network.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 public class InformationActivity extends AppCompatActivity {
-    private  TabLayout tabLayout;
+    private TabLayout tabLayout;
+    private TextView nameTextView;
+    private TextView heightTextView;
+    private TextView weightTextView;
+    private TextView phoneTextView;
+    private TextView emailTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +30,12 @@ public class InformationActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_information);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs) ;
-
+        tabLayout = findViewById(R.id.tabs);
+        nameTextView = findViewById(R.id.nameText);
+        heightTextView = findViewById(R.id.heightText);
+        weightTextView = findViewById(R.id.weightText);
+        phoneTextView = findViewById(R.id.phoneText);
+        emailTextView = findViewById(R.id.emailText);
 
         BottomNavigationView navView = findViewById(R.id.navigation);
         navView.setSelectedItemId(R.id.navigation_notifications);
@@ -32,15 +43,12 @@ public class InformationActivity extends AppCompatActivity {
         navView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.navigation_home) {
-                // HomeActivity로 이동
                 startActivity(new Intent(InformationActivity.this, MainActivity.class));
                 return true;
             } else if (itemId == R.id.navigation_dashboard) {
-                // DashboardActivity로 이동
                 startActivity(new Intent(InformationActivity.this, StatisticsActivity.class));
                 return true;
             } else if (itemId == R.id.navigation_notifications) {
-                // NotificationsActivity로 이동
                 startActivity(new Intent(InformationActivity.this, InformationActivity.class));
                 return true;
             }
@@ -50,8 +58,8 @@ public class InformationActivity extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                int pos = tab.getPosition() ;
-                changeView(pos) ;
+                int pos = tab.getPosition();
+                changeView(pos);
             }
 
             @Override
@@ -61,7 +69,7 @@ public class InformationActivity extends AppCompatActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-                // TODO : 이미 선택된 tab이 다시
+                // TODO : 이미 선택된 tab이 다시 선택됨.
             }
         });
 
@@ -69,29 +77,33 @@ public class InformationActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-
         });
 
+        // 사용자 정보 설정
+        User user = (User) getIntent().getSerializableExtra("user");
 
+        if (user != null) {
+            nameTextView.setText(user.getName());
+            heightTextView.setText(String.format("%d cm", user.getHeight()));
+            weightTextView.setText(String.format("%d kg", user.getWeight()));
+            phoneTextView.setText(user.getPhone());
+            emailTextView.setText(user.getEmail());
+        }
     }
 
-
     private void changeView(int index) {
-        LinearLayout l1 = (LinearLayout) findViewById(R.id.layout1) ;
-        LinearLayout l2 = (LinearLayout) findViewById(R.id.layout2) ;
-
+        LinearLayout l1 = findViewById(R.id.layout1);
+        LinearLayout l2 = findViewById(R.id.layout2);
 
         switch (index) {
-            case 0 :
-                l1.setVisibility(View.VISIBLE) ;
-                l2.setVisibility(View.INVISIBLE) ;
-                break ;
-            case 1 :
-                l2.setVisibility(View.VISIBLE) ;
-                l1.setVisibility(View.INVISIBLE) ;
-                break ;
-
-
+            case 0:
+                l1.setVisibility(View.VISIBLE);
+                l2.setVisibility(View.INVISIBLE);
+                break;
+            case 1:
+                l2.setVisibility(View.VISIBLE);
+                l1.setVisibility(View.INVISIBLE);
+                break;
         }
     }
 }

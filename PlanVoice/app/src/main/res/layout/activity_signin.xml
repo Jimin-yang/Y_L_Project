@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SigninActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center"
-        >
+        android:gravity="center">
 
         <TextView
             android:layout_marginTop="50dp"
@@ -45,19 +45,17 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
+                    android:layout_weight="1"/>
 
                 <EditText
                     android:id="@+id/sign_idText"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:backgroundTint="@color/white"
                     android:gravity="center"
                     android:padding="10dp"
                     android:textColor="@color/white"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -77,19 +75,18 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
+                    android:layout_weight="1"/>
 
                 <EditText
                     android:id="@+id/sign_passwdText"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity=""
                     android:backgroundTint="@color/white"
                     android:gravity="center"
                     android:padding="10dp"
                     android:textColor="@color/white"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:inputType="textPassword"/>
             </LinearLayout>
 
             <LinearLayout
@@ -102,28 +99,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="30dp"
-                    android:text="비밀번호"
+                    android:text="비밀번호 확인"
                     android:textColor="@color/white"
                     android:textSize="18dp" />
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
+                    android:layout_weight="1"/>
 
                 <EditText
                     android:id="@+id/sign_check_passwdText"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:backgroundTint="@color/white"
                     android:gravity="center"
                     android:padding="10dp"
                     android:textColor="@color/white"
                     android:textSize="18dp"
-                    android:inputType="textPassword"
-                    />
+                    android:inputType="textPassword"/>
             </LinearLayout>
 
             <LinearLayout
@@ -131,66 +125,60 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="이름"
                     android:textSize="18dp"
                     android:layout_marginRight="30dp"
-                    android:textColor="@color/white"
-                    />
+                    android:textColor="@color/white"/>
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
+                    android:layout_weight="1"/>
 
                 <EditText
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:padding="10dp"
                     android:textSize="18dp"
                     android:textColor="@color/white"
                     android:backgroundTint="@color/white"
                     android:id="@+id/nameText"
-                    android:gravity="center"
-                    />
+                    android:gravity="center"/>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="380dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="나이"
                     android:textSize="18dp"
                     android:layout_marginRight="30dp"
-                    android:textColor="@color/white"
-                    />
+                    android:textColor="@color/white"/>
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
-
+                    android:layout_weight="1"/>
 
                 <EditText
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:padding="10dp"
                     android:textSize="18dp"
                     android:textColor="@color/white"
                     android:backgroundTint="@color/white"
                     android:id="@+id/ageText"
                     android:gravity="center"
-                    android:inputType="number"
-                    />
+                    android:inputType="number"/>
             </LinearLayout>
 
             <LinearLayout
@@ -198,27 +186,24 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="키"
                     android:textSize="18dp"
                     android:layout_marginRight="30dp"
-                    android:textColor="@color/white"
-                />
+                    android:textColor="@color/white"/>
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
-
+                    android:layout_weight="1"/>
 
                 <EditText
                     android:id="@+id/heightText"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:backgroundTint="@color/white"
                     android:gravity="center"
                     android:padding="10dp"
@@ -226,159 +211,146 @@
                     android:textSize="18dp"
                     android:inputType="number"/>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="380dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="몸무게"
                     android:textSize="18dp"
                     android:layout_marginRight="30dp"
-                    android:textColor="@color/white"
-                    />
+                    android:textColor="@color/white"/>
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
+                    android:layout_weight="1"/>
 
                 <EditText
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:padding="10dp"
                     android:textSize="18dp"
                     android:textColor="@color/white"
                     android:backgroundTint="@color/white"
-                    android:id="@+id/widthText"
+                    android:id="@+id/weightText"
                     android:gravity="center"
-                    android:inputType="number"
-                    />
+                    android:inputType="number"/>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="380dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="성별"
                     android:textSize="18dp"
                     android:layout_marginRight="30dp"
-                    android:textColor="@color/white"
-                    />
+                    android:textColor="@color/white"/>
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
+                    android:layout_weight="1"/>
 
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/genderGroup"
-                >
-                <RadioButton
-                    android:layout_width="140dp"
+                <RadioGroup
+                    android:id="@+id/genderRadioGroup"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:padding="10dp"
-                    android:textSize="18dp"
-                    android:text="남자"
-                    android:textColor="@color/white"
-                    android:id="@+id/man"
-                    android:gravity="center"
-                    />
-                <RadioButton
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:padding="10dp"
-                    android:textSize="18dp"
-                    android:text="여자"
-                    android:textColor="@color/white"
-                    android:id="@+id/woman"
-                    android:gravity="center"
-                    />
-            </RadioGroup>
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textSize="18dp"
+                        android:text="남자"
+                        android:textColor="@color/white"
+                        android:id="@+id/man"
+                        android:gravity="center"/>
+                    <RadioButton
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textSize="18dp"
+                        android:text="여자"
+                        android:textColor="@color/white"
+                        android:id="@+id/woman"
+                        android:gravity="center"/>
+                </RadioGroup>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="380dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="이메일"
                     android:textSize="18dp"
                     android:layout_marginRight="30dp"
-                    android:textColor="@color/white"
-
-                    />
+                    android:textColor="@color/white"/>
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
+                    android:layout_weight="1"/>
 
                 <EditText
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:padding="10dp"
                     android:textSize="18dp"
                     android:textColor="@color/white"
                     android:backgroundTint="@color/white"
                     android:id="@+id/emailText"
                     android:gravity="center"
-                    android:inputType="textEmailAddress"
-                    />
+                    android:inputType="textEmailAddress"/>
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="380dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="전화번호"
                     android:textSize="18dp"
                     android:layout_marginRight="30dp"
-                    android:textColor="@color/white"
-
-                    />
+                    android:textColor="@color/white"/>
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
+                    android:layout_weight="1"/>
 
                 <EditText
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:padding="10dp"
                     android:textSize="18dp"
                     android:textColor="@color/white"
                     android:backgroundTint="@color/white"
                     android:id="@+id/phoneText"
                     android:gravity="center"
-                    android:inputType="phone"
-                    />
+                    android:inputType="phone"/>
             </LinearLayout>
+
             <Button
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
@@ -386,10 +358,8 @@
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:text="회원가입"
-                android:id="@+id/signinButton"
-                android:background="@drawable/button_text_rounded_background"
-                />
+                android:id="@+id/registerButton"
+                android:background="@drawable/button_text_rounded_background"/>
         </LinearLayout>
-
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
