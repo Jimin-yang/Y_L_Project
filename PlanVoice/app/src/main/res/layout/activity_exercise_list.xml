@@ -37,7 +37,8 @@
             android:layout_marginHorizontal="20dp"
             android:background="@drawable/edit_text_rounded_background"
             android:gravity="center">
-            <ImageView
+            <ImageButton
+                android:id="@+id/exercise_searchButton"
                 android:layout_marginLeft="5dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -52,8 +53,7 @@
                 android:padding="10dp"
                 android:textSize="14dp"
                 android:textColor="#897E7E"
-                android:textColorHint="#897E7E"
-                />
+                android:textColorHint="#897E7E"/>
         </LinearLayout>
 
         <HorizontalScrollView
@@ -87,8 +87,7 @@
                     android:textSize="12dp"
                     android:textColor="#897E7E"
                     android:background="@drawable/edit_text_rounded_background"
-                    android:onClick="filterExercises
-"
+                    android:onClick="filterExercises"
                     android:tag="가슴" />
                 <Button
                     android:layout_width="45dp"
@@ -147,5 +146,13 @@
                     android:tag="복부" />
             </LinearLayout>
         </HorizontalScrollView>
+        <ListView
+            android:id="@+id/exercise_view"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

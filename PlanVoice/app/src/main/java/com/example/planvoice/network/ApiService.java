@@ -29,4 +29,7 @@ public interface ApiService {
     );
     @GET("get_exercises.php")
     Call<List<ExerciseResponse>> getExercises(@Query("bodyPart") String bodyPart);
+
+    @GET("search_exercises.php")
+    Call<List<ExerciseResponse>> searchExercises(@Query("searchText") String searchText);
 }

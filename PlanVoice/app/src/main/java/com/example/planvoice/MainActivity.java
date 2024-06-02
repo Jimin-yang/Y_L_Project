@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Exercise_list_Activity.class);
-                intent.putExtra("user", user);  // 사용자 정보 전달
+                //intent.putExtra("user", user);  // 사용자 정보 전달
                 startActivity(intent);
             }
         });
