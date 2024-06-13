@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Plen_select_Activity">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:scrollbars="none"
         tools:ignore="MissingConstraints">
         <LinearLayout
@@ -18,6 +18,7 @@
             android:layout_marginTop="25dp"
             android:orientation="vertical">
 
+            <!-- 개인 맞춤형 플랜 -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -38,34 +39,23 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:orientation="horizontal">
 
-                        >
                         <Button
+                            android:id="@+id/plan_weakness"
                             android:layout_width="200dp"
                             android:layout_height="60dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:text="취약 부위 보완 플랜"
                             android:textColor="@color/white"
-                            android:background="@drawable/button_text_rounded_background"
-                            />
-
-                        <Button
-                            android:layout_width="200dp"
-                            android:layout_height="60dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:text="취약 부위 보완 플랜"
-                            android:textColor="@color/white"
-                            android:background="@drawable/button_text_rounded_background"
-                            />
+                            android:background="@drawable/button_text_rounded_background" />
 
                     </LinearLayout>
                 </HorizontalScrollView>
-
             </LinearLayout>
 
+            <!-- 선택된 플랜 -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -77,8 +67,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
                     android:text="선택된 플랜"
-                    android:textColor="@color/white"
-                    />
+                    android:textColor="@color/white" />
                 <HorizontalScrollView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -87,10 +76,10 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:orientation="horizontal">
 
-                        >
                         <Button
+                            android:id="@+id/selected_plan_button"
                             android:layout_width="200dp"
                             android:layout_height="60dp"
                             android:layout_marginTop="10dp"
@@ -98,16 +87,13 @@
                             android:text="근육량 증가 추천 플랜 (초급)"
                             android:textColor="@color/white"
                             android:background="@drawable/button_text_rounded_background"
-                            />
-
+                            android:enabled="false" />
 
                     </LinearLayout>
                 </HorizontalScrollView>
-
-
-
             </LinearLayout>
 
+            <!-- 근육량 증가 -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -119,8 +105,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
                     android:text="근육량 증가"
-                    android:textColor="@color/white"
-                    />
+                    android:textColor="@color/white" />
                 <HorizontalScrollView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -129,55 +114,53 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-
-                        >
-                        <Button
-                            android:layout_width="200dp"
-                            android:layout_height="60dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:text="근육량 증가 추천 플랜 (입문)"
-                            android:textColor="@color/white"
-                            android:background="@drawable/button_text_rounded_background"
-                            />
+                        android:orientation="horizontal">
 
                         <Button
+                            android:id="@+id/plan_muscle_gain_beginner"
                             android:layout_width="200dp"
                             android:layout_height="60dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:text="근육량 증가 추천 플랜 (초급)"
                             android:textColor="@color/white"
-                            android:background="@drawable/button_text_rounded_background"
-                            />
+                            android:background="@drawable/button_text_rounded_background" />
 
                         <Button
+                            android:id="@+id/plan_muscle_gain_intro"
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="근육량 증가 추천 플랜 (입문)"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button_text_rounded_background" />
+
+                        <Button
+                            android:id="@+id/plan_muscle_gain_intermediate"
                             android:layout_width="200dp"
                             android:layout_height="60dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:text="근육량 증가 추천 플랜 (중급)"
                             android:textColor="@color/white"
-                            android:background="@drawable/button_text_rounded_background"
-                            />
+                            android:background="@drawable/button_text_rounded_background" />
+
                         <Button
+                            android:id="@+id/plan_muscle_gain_advanced"
                             android:layout_width="200dp"
                             android:layout_height="60dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:text="근육량 증가 추천 플랜 (고급)"
                             android:textColor="@color/white"
-                            android:background="@drawable/button_text_rounded_background"
-                            />
+                            android:background="@drawable/button_text_rounded_background" />
 
                     </LinearLayout>
                 </HorizontalScrollView>
-
-
-
             </LinearLayout>
 
+            <!-- 체지방 감소 -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -189,8 +172,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
                     android:text="체지방 감소"
-                    android:textColor="@color/white"
-                    />
+                    android:textColor="@color/white" />
                 <HorizontalScrollView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -199,54 +181,43 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:orientation="horizontal">
 
-                        >
                         <Button
+                            android:id="@+id/plan_fat_loss_intro"
                             android:layout_width="200dp"
                             android:layout_height="60dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:text="체지방 감소 추천 플랜 (입문)"
                             android:textColor="@color/white"
-                            android:background="@drawable/button_text_rounded_background"
-                            />
+                            android:background="@drawable/button_text_rounded_background" />
 
                         <Button
-                            android:layout_width="200dp"
-                            android:layout_height="60dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:text="체지방 감소 추천 플랜 (초급)"
-                            android:textColor="@color/white"
-                            android:background="@drawable/button_text_rounded_background"
-                            />
-                        <Button
+                            android:id="@+id/plan_fat_loss_intermediate"
                             android:layout_width="200dp"
                             android:layout_height="60dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:text="체지방 감소 추천 플랜 (중급)"
                             android:textColor="@color/white"
-                            android:background="@drawable/button_text_rounded_background"
-                            />
+                            android:background="@drawable/button_text_rounded_background" />
+
                         <Button
+                            android:id="@+id/plan_fat_loss_advanced"
                             android:layout_width="200dp"
                             android:layout_height="60dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:text="체지방 감소 추천 플랜 (고급)"
                             android:textColor="@color/white"
-                            android:background="@drawable/button_text_rounded_background"
-                            />
+                            android:background="@drawable/button_text_rounded_background" />
 
                     </LinearLayout>
                 </HorizontalScrollView>
-
-
-
             </LinearLayout>
 
+            <!-- 현재 상태 유지 -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -258,8 +229,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
                     android:text="현재 상태 유지"
-                    android:textColor="@color/white"
-                    />
+                    android:textColor="@color/white" />
                 <HorizontalScrollView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -268,52 +238,40 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:orientation="horizontal">
 
-                        >
                         <Button
+                            android:id="@+id/plan_maintain_intro"
                             android:layout_width="200dp"
                             android:layout_height="60dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:text="현재 상태 유지 플랜 (입문)"
                             android:textColor="@color/white"
-                            android:background="@drawable/button_text_rounded_background"
-                            />
+                            android:background="@drawable/button_text_rounded_background" />
 
                         <Button
-                            android:layout_width="200dp"
-                            android:layout_height="60dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:text="현재 상태 유지 플랜 (초급)"
-                            android:textColor="@color/white"
-                            android:background="@drawable/button_text_rounded_background"
-                            />
-                        <Button
+                            android:id="@+id/plan_maintain_intermediate"
                             android:layout_width="200dp"
                             android:layout_height="60dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:text="현재 상태 유지 플랜 (중급)"
                             android:textColor="@color/white"
-                            android:background="@drawable/button_text_rounded_background"
-                            />
+                            android:background="@drawable/button_text_rounded_background" />
+
                         <Button
+                            android:id="@+id/plan_maintain_advanced"
                             android:layout_width="200dp"
                             android:layout_height="60dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:text="현재 상태 유지 플랜 (고급)"
                             android:textColor="@color/white"
-                            android:background="@drawable/button_text_rounded_background"
-                            />
+                            android:background="@drawable/button_text_rounded_background" />
 
                     </LinearLayout>
                 </HorizontalScrollView>
-
-
-
             </LinearLayout>
 
         </LinearLayout>

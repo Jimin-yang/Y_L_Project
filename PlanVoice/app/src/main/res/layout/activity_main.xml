@@ -44,8 +44,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:src="@drawable/ic_arrow_drop_down" />
-
-        <!-- 여기에 필요한 다른 뷰들을 추가하세요 -->
     </LinearLayout>
 
     <ScrollView
@@ -74,7 +72,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
                     android:orientation="vertical">
 
                     <TextView
@@ -82,8 +79,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="운동부위: 가슴, 삼두, 유산소"
-                        android:textColor="@color/white"
-                        />
+                        android:textColor="@color/white" />
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
@@ -98,7 +94,6 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:padding="16dp"
-
                             android:weightSum="3">
 
                             <LinearLayout
@@ -118,8 +113,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="6개의 운동"
-                                    android:textColor="@color/white"
-                                    />
+                                    android:textColor="@color/white" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -138,8 +132,8 @@
                                     android:id="@+id/time_exercise_count"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="6개의 운동"
-                                    android:textColor="@color/white"/>
+                                    android:text="90분"
+                                    android:textColor="@color/white" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -159,8 +153,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="709kcal"
-                                    android:textColor="@color/white"
-                                    />
+                                    android:textColor="@color/white" />
                             </LinearLayout>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -174,56 +167,6 @@
                         android:text="추천 운동 시작하기" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/myGymSubtitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/myGymTitle"
-                    android:layout_marginTop="8dp"
-                    android:textColor="@color/white"
-                    android:text="부산대헬스장" />
-
-                <TextView
-                    android:id="@+id/myGymCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/myGymSubtitle"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/white"
-                    android:text="41개의 기구" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/baseline_arrow_forward_ios_24" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="4dp">
-
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/myGymTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="내 헬스장"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-
-            <!-- 여기에 다른 뷰들을 추가하시면 됩니다. -->
         </LinearLayout>
     </ScrollView>
 
@@ -237,5 +180,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:menu="@menu/navigation_menu" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

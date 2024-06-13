@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- 생성 시간: 24-06-02 16:41
+-- Host: 127.0.0.1:3306
+-- 생성 시간: 24-06-13 16:30
 -- 서버 버전: 10.4.32-MariaDB
 -- PHP 버전: 8.2.12
 
@@ -84,6 +84,49 @@ INSERT INTO `exercise` (`ID`, `ExerciseName`, `BodyPart`, `ExerciseDescription`,
 -- --------------------------------------------------------
 
 --
+-- 테이블 구조 `exercise_plans`
+--
+
+CREATE TABLE `exercise_plans` (
+  `id` int(11) NOT NULL,
+  `plan_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 테이블의 덤프 데이터 `exercise_plans`
+--
+
+INSERT INTO `exercise_plans` (`id`, `plan_name`) VALUES
+(1, '근육량 증가 추천 플랜 (초급)'),
+(2, '체지방 감소 추천 플랜 (중급)');
+
+-- --------------------------------------------------------
+
+--
+-- 테이블 구조 `exercise_plan_exercises`
+--
+
+CREATE TABLE `exercise_plan_exercises` (
+  `id` int(11) NOT NULL,
+  `plan_id` int(11) NOT NULL,
+  `exercise_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 테이블의 덤프 데이터 `exercise_plan_exercises`
+--
+
+INSERT INTO `exercise_plan_exercises` (`id`, `plan_id`, `exercise_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 2, 7),
+(5, 2, 8),
+(6, 2, 9);
+
+-- --------------------------------------------------------
+
+--
 -- 테이블 구조 `users`
 --
 
@@ -107,8 +150,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `age`, `height`, `weight`, `gender`, `email`, `phone`) VALUES
 (1, 'testuser', 'testpassword', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (2, 'testtest', 'testtoto', 'james', 24, 177, 76, '남자', 'james@naver.com', '01043434343'),
-(3, 'test1', 'test11', 'Amy', 20, 170, 60, '남자', 'Amy@gmail.com', '01012345678'),
-(4, '1111', '1111', 'wwww', 24, 156, 156, '여자', 'ww@ww.com', '01011112222');
+(3, 'test1', 'test11', 'Amy', 20, 170, 60, '남자', 'Amy@gmail.com', '01012345678');
 
 --
 -- 덤프된 테이블의 인덱스
@@ -121,6 +163,20 @@ ALTER TABLE `exercise`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- 테이블의 인덱스 `exercise_plans`
+--
+ALTER TABLE `exercise_plans`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 테이블의 인덱스 `exercise_plan_exercises`
+--
+ALTER TABLE `exercise_plan_exercises`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `plan_id` (`plan_id`),
+  ADD KEY `exercise_id` (`exercise_id`);
+
+--
 -- 테이블의 인덱스 `users`
 --
 ALTER TABLE `users`
@@ -131,10 +187,33 @@ ALTER TABLE `users`
 --
 
 --
+-- 테이블의 AUTO_INCREMENT `exercise_plans`
+--
+ALTER TABLE `exercise_plans`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- 테이블의 AUTO_INCREMENT `exercise_plan_exercises`
+--
+ALTER TABLE `exercise_plan_exercises`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- 테이블의 AUTO_INCREMENT `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- 덤프된 테이블의 제약사항
+--
+
+--
+-- 테이블의 제약사항 `exercise_plan_exercises`
+--
+ALTER TABLE `exercise_plan_exercises`
+  ADD CONSTRAINT `exercise_plan_exercises_ibfk_1` FOREIGN KEY (`plan_id`) REFERENCES `exercise_plans` (`id`),
+  ADD CONSTRAINT `exercise_plan_exercises_ibfk_2` FOREIGN KEY (`exercise_id`) REFERENCES `exercise` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

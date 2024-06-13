@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#333333"
+    tools:context=".MainActivity">
+
+    <!-- 상단 뒤로가기 버튼 -->
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/baseline_arrow_back_ios_24" />
+
+    <!-- 타이머 텍스트 -->
+    <TextView
+        android:id="@+id/tv_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="00:00:00"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <!-- 운동 제목 -->
+    <TextView
+        android:id="@+id/tv_exercise_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_timer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="운동 전 스트레칭"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <!-- 운동 세부 제목 -->
+    <TextView
+        android:id="@+id/tv_exercise_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_exercise_title"
+        android:layout_centerHorizontal="true"
+        android:text="트레드밀 런닝"
+        android:textColor="#AAAAAA"
+        android:textSize="14sp" />
+
+    <!-- 음성 버튼 -->
+    <ImageButton
+        android:id="@+id/btn_voice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/mic_40px" />
+
+    <!-- 운동 이미지 -->
+    <ImageView
+        android:id="@+id/img_exercise"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/tv_exercise_subtitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="#CCCCCC"
+        android:contentDescription="운동 이미지"
+        android:src="@drawable/bench_press" />
+
+    <!-- 이전 버튼 -->
+    <Button
+        android:id="@+id/btn_previous"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_exercise"
+        android:layout_marginTop="16dp"
+        android:layout_toStartOf="@id/btn_play"
+        android:text="이전"
+        android:textColor="#000000"
+        android:background="@drawable/button_background" />
+
+    <!-- 재생 버튼 -->
+    <ImageButton
+        android:id="@+id/btn_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_exercise"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/play_arrow_40px" />
+
+    <!-- 다음 버튼 -->
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_exercise"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@id/btn_play"
+        android:text="다음"
+        android:textColor="#000000"
+        android:background="@drawable/button_background" />
+
+    <!-- 진행 막대 -->
+
+    <!-- 시작 시간 -->
+    <SeekBar
+        android:id="@+id/seekbar_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_play"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#333333"
+        android:max="100"
+        android:progress="0"
+        android:progressTint="#AAAAAA"
+        android:thumbTint="#AAAAAA" />
+
+    <TextView
+        android:id="@+id/tv_start_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/seekbar_progress"
+        android:layout_alignStart="@id/seekbar_progress"
+        android:layout_marginTop="4dp"
+        android:text="00:00"
+        android:textColor="#AAAAAA"
+        android:textSize="12sp" />
+
+    <!-- 종료 시간 -->
+    <TextView
+        android:id="@+id/tv_end_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/seekbar_progress"
+        android:layout_alignEnd="@id/seekbar_progress"
+        android:layout_marginTop="4dp"
+        android:text="06:20"
+        android:textColor="#AAAAAA"
+        android:textSize="12sp" />
+
+    <!-- 하단 메뉴와 생략 버튼 -->
+    <RelativeLayout
+        android:id="@+id/bottom_menu"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="16dp"
+        android:background="#555555">
+
+        <ImageButton
+            android:id="@+id/btn_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_menu" />
+
+        <Button
+            android:id="@+id/btn_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/button_background"
+            android:text="생략"
+            android:textColor="#000000" />
+    </RelativeLayout>
+
+</RelativeLayout>

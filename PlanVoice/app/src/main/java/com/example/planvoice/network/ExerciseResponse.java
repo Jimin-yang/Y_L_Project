@@ -1,51 +1,62 @@
 package com.example.planvoice.network;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ExerciseResponse {
 
-    private int ID;
-    private String ExerciseName;
-    private String BodyPart;
-    private String ExerciseDescription;
+    @SerializedName("ID")
+    private int id;
+
+    @SerializedName("ExerciseName")
+    private String exerciseName;
+
+    @SerializedName("BodyPart")
+    private String bodyPart;
+
+    @SerializedName("ExerciseDescription")
+    private String exerciseDescription;
+
+    @SerializedName("imageURL")
     private String imageURL;
 
-    public int getID() {
-        return ID;
+    // Getters and setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getExerciseName() {
-        return ExerciseName;
+        return exerciseName;
+    }
+
+    public void setExerciseName(String exerciseName) {
+        this.exerciseName = exerciseName;
     }
 
     public String getBodyPart() {
-        return BodyPart;
+        return bodyPart;
+    }
+
+    public void setBodyPart(String bodyPart) {
+        this.bodyPart = bodyPart;
     }
 
     public String getExerciseDescription() {
-        return ExerciseDescription;
+        return exerciseDescription;
+    }
+
+    public void setExerciseDescription(String exerciseDescription) {
+        this.exerciseDescription = exerciseDescription;
     }
 
     public String getImageURL() {
         return imageURL;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-    public void setExerciseName(String exerciseName) {
-        ExerciseName = exerciseName;
-    }
-
-    public void setBodyPart(String bodyPart) {
-        BodyPart = bodyPart;
-    }
-
-    public void setExerciseDescription(String exerciseDescription) {
-        ExerciseDescription = exerciseDescription;
-    }
-
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
-
 }
