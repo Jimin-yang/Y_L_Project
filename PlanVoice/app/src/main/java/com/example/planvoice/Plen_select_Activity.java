@@ -9,19 +9,16 @@ import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.planvoice.network.ApiService;
+import com.example.planvoice.network.ExercisePlan;
 import com.example.planvoice.network.ExercisePlanResponse;
 import com.example.planvoice.network.ExerciseResponse;
 import com.example.planvoice.network.RetrofitClient;
-import com.google.gson.Gson;
 
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,75 +29,98 @@ public class Plen_select_Activity extends AppCompatActivity {
 
     private static final String TAG = "Plen_select_Activity";
     private Button selectedPlanButton;
-    private SharedPreferences sharedPreferences;
+    private Map<String, ExercisePlan> exercisePlansMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_plen_select);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
         getSupportActionBar().setTitle("플랜 선택");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        sharedPreferences = getSharedPreferences("PlanVoicePrefs", MODE_PRIVATE);
         selectedPlanButton = findViewById(R.id.selected_plan_button);
 
-        fetchExercisePlans();
+        exercisePlansMap = new HashMap<>();
+
+        // API 호출하여 모든 플랜을 가져옴
+        loadExercisePlans();
     }
 
-    private void fetchExercisePlans() {
-        Retrofit retrofit = RetrofitClient.getClient("http://10.0.2.2/planvoice/");
+    private void loadExercisePlans() {
+        Retrofit retrofit = RetrofitClient.getClient("http://yourserver.com/");
         ApiService apiService = retrofit.create(ApiService.class);
 
-        Call<List<ExercisePlanResponse>> call = apiService.getExercisePlans();
+        Call<List<ExercisePlanResponse>> call = apiService.getPlans();
         call.enqueue(new Callback<List<ExercisePlanResponse>>() {
             @Override
             public void onResponse(Call<List<ExercisePlanResponse>> call, Response<List<ExercisePlanResponse>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    List<ExercisePlanResponse> plans = response.body();
-                    Log.d(TAG, "Received plans: " + new Gson().toJson(plans));
-                    for (ExercisePlanResponse plan : plans) {
-                        setupButtonForPlan(plan);
+                    List<ExercisePlanResponse> planResponses = response.body();
+                    for (ExercisePlanResponse planResponse : planResponses) {
+                        ExercisePlan plan = planResponse.toExercisePlan();
+                        exercisePlansMap.put(plan.getPlanName(), plan);
+                        Log.d(TAG, "Loaded plan: " + plan.getPlanName());
                     }
+                    setupPlanButtons();
                 } else {
-                    Log.e(TAG, "Failed to fetch plans: " + response.message());
+                    Log.e(TAG, "Failed to load plans: " + response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<List<ExercisePlanResponse>> call, Throwable t) {
-                Log.e(TAG, "Error: " + t.getMessage());
+                Log.e(TAG, "Failed to load plans", t);
             }
         });
     }
 
-    private void setupButtonForPlan(ExercisePlanResponse plan) {
-        String planName = plan.getPlanName();
-        String buttonIdName = "plan_" + planName.toLowerCase().replace(" ", "_").replace("(", "").replace(")", "");
-        int buttonId = getResources().getIdentifier(buttonIdName, "id", getPackageName());
+    private void setupPlanButtons() {
+        for (Map.Entry<String, ExercisePlan> entry : exercisePlansMap.entrySet()) {
+            String planName = entry.getKey();
+            int buttonId = getButtonIdForPlanName(planName);
+            if (buttonId != 0) {
+                setupButton(buttonId, planName);
+            } else {
+                Log.e(TAG, "Button not found for plan: " + planName);
+            }
+        }
+    }
+
+    private int getButtonIdForPlanName(String planName) {
+        switch (planName) {
+            case "근육량 증가 추천 플랜 (초급)": return R.id.plan_muscle_gain_beginner;
+            case "근육량 증가 추천 플랜 (입문)": return R.id.plan_muscle_gain_intro;
+            case "근육량 증가 추천 플랜 (중급)": return R.id.plan_muscle_gain_intermediate;
+            case "근육량 증가 추천 플랜 (고급)": return R.id.plan_muscle_gain_advanced;
+            case "체지방 감소 추천 플랜 (입문)": return R.id.plan_fat_loss_intro;
+            case "체지방 감소 추천 플랜 (중급)": return R.id.plan_fat_loss_intermediate;
+            case "체지방 감소 추천 플랜 (고급)": return R.id.plan_fat_loss_advanced;
+            case "현재 상태 유지 플랜 (입문)": return R.id.plan_maintain_intro;
+            case "현재 상태 유지 플랜 (중급)": return R.id.plan_maintain_intermediate;
+            case "현재 상태 유지 플랜 (고급)": return R.id.plan_maintain_advanced;
+            case "취약 부위 보완 플랜": return R.id.plan_weakness;
+            default: return 0;
+        }
+    }
+
+    private void setupButton(int buttonId, String planName) {
         Button planButton = findViewById(buttonId);
         if (planButton != null) {
             planButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     selectedPlanButton.setText(planName);
-                    List<ExerciseResponse> exercises = plan.getExercises();
-                    Log.d(TAG, "Selected Plan: " + planName);
-                    if (exercises != null) {
-                        int exerciseCount = exercises.size();
+                    ExercisePlan selectedPlan = exercisePlansMap.get(planName);
+                    if (selectedPlan != null) {
+                        int exerciseCount = selectedPlan.getExercises().size();
                         int exerciseTime = exerciseCount * 15; // 임의로 각 운동에 15분 할당
                         int caloriesBurned = exerciseCount * 100; // 임의로 각 운동에 100kcal 할당
+                        String exerciseCategories = getExerciseCategories(selectedPlan.getExercises());
 
-                        String exerciseCategories = getExerciseCategories(exercises);
-
-                        // SharedPreferences에 선택한 플랜 정보 저장
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        SharedPreferences preferences = getSharedPreferences("PlanPreferences", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
                         editor.putString("selectedPlan", planName);
                         editor.putInt("exerciseCount", exerciseCount);
                         editor.putInt("exerciseTime", exerciseTime);
@@ -108,26 +128,40 @@ public class Plen_select_Activity extends AppCompatActivity {
                         editor.putString("exerciseCategories", exerciseCategories);
                         editor.apply();
 
-                        // 로그 추가
                         Log.d(TAG, "Plan saved: " + planName);
                         Log.d(TAG, "Exercise count: " + exerciseCount);
                         Log.d(TAG, "Exercise time: " + exerciseTime);
                         Log.d(TAG, "Calories burned: " + caloriesBurned);
                         Log.d(TAG, "Exercise categories: " + exerciseCategories);
+
+                        // 선택된 플랜의 운동 목록을 로그로 출력
+                        for (ExerciseResponse exercise : selectedPlan.getExercises()) {
+                            Log.d(TAG, "Exercise: " + exercise.getExerciseName() + ", BodyPart: " + exercise.getBodyPart());
+                        }
+
+                        Intent resultIntent = new Intent(Plen_select_Activity.this, MainActivity.class);
+                        resultIntent.putExtra("selectedPlan", planName);
+                        resultIntent.putExtra("exerciseCount", exerciseCount);
+                        resultIntent.putExtra("exerciseTime", exerciseTime);
+                        resultIntent.putExtra("caloriesBurned", caloriesBurned);
+                        resultIntent.putExtra("exerciseCategories", exerciseCategories);
+                        startActivity(resultIntent);
+                    } else {
+                        Log.e(TAG, "Selected plan not found: " + planName);
                     }
                 }
             });
-        } else {
-            Log.e(TAG, "Button not found for plan: " + planName);
         }
     }
 
     private String getExerciseCategories(List<ExerciseResponse> exercises) {
-        // 운동 부위 추출 로직 구현
-        Set<String> categories = new HashSet<>();
+        StringBuilder categories = new StringBuilder();
         for (ExerciseResponse exercise : exercises) {
-            categories.add(exercise.getBodyPart());
+            if (categories.length() > 0) {
+                categories.append(", ");
+            }
+            categories.append(exercise.getBodyPart());
         }
-        return String.join(", ", categories);
+        return categories.toString();
     }
 }

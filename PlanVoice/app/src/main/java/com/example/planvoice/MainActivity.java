@@ -4,24 +4,28 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.example.planvoice.network.ExerciseResponse;
+import com.example.planvoice.network.User;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.planvoice.network.User;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import java.lang.reflect.Type;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
     private User user;
-    private SharedPreferences sharedPreferences;
-    private TextView tvWorkoutPlan;
-    private TextView tvCategories;
-    private TextView tvExerciseCount;
-    private TextView tvExerciseTime;
-    private TextView tvCaloriesBurned;
+    private TextView tvWorkoutPlan, tvExerciseCount, tvExerciseTime, tvCaloriesBurned, tvCategories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,18 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Intent로 전달된 사용자 정보 가져오기
         user = (User) getIntent().getSerializableExtra("user");
-
-        sharedPreferences = getSharedPreferences("PlanVoicePreferences", MODE_PRIVATE);
-
-        // UI 요소 초기화
-        tvWorkoutPlan = findViewById(R.id.tv_workout_plan);
-        tvCategories = findViewById(R.id.tv_categories);
-        tvExerciseCount = findViewById(R.id.tv_exercise_count);
-        tvExerciseTime = findViewById(R.id.time_exercise_count);
-        tvCaloriesBurned = findViewById(R.id.kcal_exercise_count);
-
-        // SharedPreferences에서 선택된 플랜 정보 가져오기
-        updatePlanInfo();
 
         BottomNavigationView navView = findViewById(R.id.navigation);
         navView.setOnItemSelectedListener(item -> {
@@ -71,41 +63,63 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        ImageButton menuBTN  = findViewById(R.id.toolbar).findViewById(R.id.menu_icon);
+        ImageButton menuBTN = findViewById(R.id.toolbar).findViewById(R.id.menu_icon);
         menuBTN.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, Exercise_list_Activity.class);
-            //intent.putExtra("user", user);  // 사용자 정보 전달
             startActivity(intent);
         });
 
-        ImageButton settingBTN  = findViewById(R.id.toolbar).findViewById(R.id.settings_icon);
+        ImageButton settingBTN = findViewById(R.id.toolbar).findViewById(R.id.settings_icon);
         settingBTN.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, Plen_select_Activity.class);
             intent.putExtra("user", user);  // 사용자 정보 전달
             startActivity(intent);
         });
+
+        tvWorkoutPlan = findViewById(R.id.tv_workout_plan);
+        tvExerciseCount = findViewById(R.id.tv_exercise_count);
+        tvExerciseTime = findViewById(R.id.tv_exercise_time);
+        tvCaloriesBurned = findViewById(R.id.tv_calories_burned);
+        tvCategories = findViewById(R.id.tv_categories);
+
+        loadSelectedPlan();
     }
 
-    private void updatePlanInfo() {
-        String planName = sharedPreferences.getString("selectedPlan", "근육량 증가 추천 플랜 (초급)");
-        int exerciseCount = sharedPreferences.getInt("exerciseCount", 6);
-        int exerciseTime = sharedPreferences.getInt("exerciseTime", 90);
-        int caloriesBurned = sharedPreferences.getInt("caloriesBurned", 709);
-        String exerciseCategories = sharedPreferences.getString("exerciseCategories", "가슴, 팔, 다리");
+    private void saveSelectedPlan(String selectedPlan, int exerciseCount, int exerciseTime, int caloriesBurned, String exerciseCategories, List<ExerciseResponse> exercises) {
+        SharedPreferences preferences = getSharedPreferences("PlanPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
 
-        // 로그 추가
-        Log.d("MainActivity", "Plan loaded: " + planName);
-        Log.d("MainActivity", "Exercise count: " + exerciseCount);
-        Log.d("MainActivity", "Exercise time: " + exerciseTime);
-        Log.d("MainActivity", "Calories burned: " + caloriesBurned);
-        Log.d("MainActivity", "Exercise categories: " + exerciseCategories);
+        editor.putString("selectedPlan", selectedPlan);
+        editor.putInt("exerciseCount", exerciseCount);
+        editor.putInt("exerciseTime", exerciseTime);
+        editor.putInt("caloriesBurned", caloriesBurned);
+        editor.putString("exerciseCategories", exerciseCategories);
 
-        tvWorkoutPlan.setText(planName);
-        tvCategories.setText("운동부위: " + exerciseCategories);
+        Gson gson = new Gson();
+        String exercisesJson = gson.toJson(exercises);
+        editor.putString("exercisesJson", exercisesJson);
+
+        editor.apply();
+    }
+
+    private void loadSelectedPlan() {
+        SharedPreferences preferences = getSharedPreferences("PlanPreferences", MODE_PRIVATE);
+        String selectedPlan = preferences.getString("selectedPlan", "근육량 증가 추천 플랜 (초급)");
+        int exerciseCount = preferences.getInt("exerciseCount", 0);
+        int exerciseTime = preferences.getInt("exerciseTime", 0);
+        int caloriesBurned = preferences.getInt("caloriesBurned", 0);
+        String exerciseCategories = preferences.getString("exerciseCategories", "");
+
+        tvWorkoutPlan.setText(selectedPlan);
         tvExerciseCount.setText(exerciseCount + "개의 운동");
         tvExerciseTime.setText(exerciseTime + "분");
         tvCaloriesBurned.setText(caloriesBurned + "kcal");
+        tvCategories.setText("운동부위: " + exerciseCategories);
+
+        Log.d(TAG, "Loaded plan: " + selectedPlan);
+        Log.d(TAG, "Exercise count: " + exerciseCount);
+        Log.d(TAG, "Exercise time: " + exerciseTime);
+        Log.d(TAG, "Calories burned: " + caloriesBurned);
+        Log.d(TAG, "Exercise categories: " + exerciseCategories);
     }
-
-
 }

@@ -28,13 +28,13 @@ public interface ApiService {
             @Field("phone") String phone
     );
 
+    @GET("get_plans.php")
+    Call<List<ExercisePlanResponse>> getPlans();
+
     @GET("get_exercises.php")
     Call<List<ExerciseResponse>> getExercises(@Query("bodyPart") String bodyPart);
 
     @GET("search_exercises.php")
     Call<List<ExerciseResponse>> searchExercises(@Query("searchText") String searchText);
 
-    // 운동 플랜 목록을 가져오는 메서드 추가
-    @GET("getExercisePlans.php")
-    Call<List<ExercisePlanResponse>> getExercisePlans();
 }

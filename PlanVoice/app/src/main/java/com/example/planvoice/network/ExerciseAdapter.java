@@ -11,12 +11,10 @@ import android.widget.TextView;
 import com.example.planvoice.R;
 
 import java.util.List;
-import java.util.ArrayList;
 
 public class ExerciseAdapter extends BaseAdapter {
     private Context mContext;
     private List<ExerciseResponse> mExerciseList;
-    private List<ExerciseResponse> filteredList;
 
     public ExerciseAdapter(Context context, List<ExerciseResponse> exerciseList) {
         mContext = context;
@@ -63,9 +61,4 @@ public class ExerciseAdapter extends BaseAdapter {
 
         return view;
     }
-    public void updateList(List<ExerciseResponse> filteredList) {
-        this.filteredList = new ArrayList<>(filteredList);
-        notifyDataSetChanged();
-    }
-
 }

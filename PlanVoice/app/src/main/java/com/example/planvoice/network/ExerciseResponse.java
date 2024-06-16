@@ -1,8 +1,9 @@
 package com.example.planvoice.network;
 
 import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
 
-public class ExerciseResponse {
+public class ExerciseResponse implements Serializable {
 
     @SerializedName("ID")
     private int id;
@@ -18,6 +19,17 @@ public class ExerciseResponse {
 
     @SerializedName("imageURL")
     private String imageURL;
+
+    public ExerciseResponse() {
+        // 기본 생성자
+    }
+
+    public ExerciseResponse(String exerciseName, String bodyPart, String exerciseDescription, String imageURL) {
+        this.exerciseName = exerciseName;
+        this.bodyPart = bodyPart;
+        this.exerciseDescription = exerciseDescription;
+        this.imageURL = imageURL;
+    }
 
     // Getters and setters
     public int getId() {

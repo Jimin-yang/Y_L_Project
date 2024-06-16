@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- 생성 시간: 24-06-13 16:30
+-- 생성 시간: 24-06-16 08:35
 -- 서버 버전: 10.4.32-MariaDB
 -- PHP 버전: 8.2.12
 
@@ -98,7 +98,15 @@ CREATE TABLE `exercise_plans` (
 
 INSERT INTO `exercise_plans` (`id`, `plan_name`) VALUES
 (1, '근육량 증가 추천 플랜 (초급)'),
-(2, '체지방 감소 추천 플랜 (중급)');
+(2, '체지방 감소 추천 플랜 (중급)'),
+(3, '근육량 증가 추천 플랜 (입문)'),
+(4, '근육량 증가 추천 플랜 (중급)'),
+(5, '근육량 증가 추천 플랜 (고급)'),
+(6, '체지방 감소 추천 플랜 (입문)'),
+(7, '체지방 감소 추천 플랜 (고급)'),
+(8, '현재 상태 유지 플랜 (입문)'),
+(9, '현재 상태 유지 플랜 (중급)'),
+(10, '현재 상태 유지 플랜 (고급)');
 
 -- --------------------------------------------------------
 
@@ -122,7 +130,31 @@ INSERT INTO `exercise_plan_exercises` (`id`, `plan_id`, `exercise_id`) VALUES
 (3, 1, 3),
 (4, 2, 7),
 (5, 2, 8),
-(6, 2, 9);
+(6, 2, 9),
+(7, 3, 1),
+(8, 3, 2),
+(9, 3, 3),
+(10, 4, 1),
+(11, 4, 2),
+(12, 4, 3),
+(13, 5, 1),
+(14, 5, 2),
+(15, 5, 3),
+(16, 6, 7),
+(17, 6, 8),
+(18, 6, 9),
+(19, 7, 7),
+(20, 7, 8),
+(21, 7, 9),
+(22, 8, 7),
+(23, 8, 8),
+(24, 8, 9),
+(25, 9, 7),
+(26, 9, 8),
+(27, 9, 9),
+(28, 10, 7),
+(29, 10, 8),
+(30, 10, 9);
 
 -- --------------------------------------------------------
 
@@ -190,13 +222,13 @@ ALTER TABLE `users`
 -- 테이블의 AUTO_INCREMENT `exercise_plans`
 --
 ALTER TABLE `exercise_plans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- 테이블의 AUTO_INCREMENT `exercise_plan_exercises`
 --
 ALTER TABLE `exercise_plan_exercises`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- 테이블의 AUTO_INCREMENT `users`
