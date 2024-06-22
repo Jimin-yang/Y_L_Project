@@ -15,6 +15,7 @@ import com.example.planvoice.network.ExercisePlan;
 import com.example.planvoice.network.ExercisePlanResponse;
 import com.example.planvoice.network.ExerciseResponse;
 import com.example.planvoice.network.RetrofitClient;
+import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.List;
@@ -49,7 +50,7 @@ public class Plen_select_Activity extends AppCompatActivity {
     }
 
     private void loadExercisePlans() {
-        Retrofit retrofit = RetrofitClient.getClient("http://yourserver.com/");
+        Retrofit retrofit = RetrofitClient.getClient("http://10.0.2.2:8080/planvoice/");
         ApiService apiService = retrofit.create(ApiService.class);
 
         Call<List<ExercisePlanResponse>> call = apiService.getPlans();
@@ -119,6 +120,10 @@ public class Plen_select_Activity extends AppCompatActivity {
                         int caloriesBurned = exerciseCount * 100; // 임의로 각 운동에 100kcal 할당
                         String exerciseCategories = getExerciseCategories(selectedPlan.getExercises());
 
+                        // Save the exercise list as JSON
+                        Gson gson = new Gson();
+                        String exercisesJson = gson.toJson(selectedPlan.getExercises());
+
                         SharedPreferences preferences = getSharedPreferences("PlanPreferences", MODE_PRIVATE);
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.putString("selectedPlan", planName);
@@ -126,6 +131,7 @@ public class Plen_select_Activity extends AppCompatActivity {
                         editor.putInt("exerciseTime", exerciseTime);
                         editor.putInt("caloriesBurned", caloriesBurned);
                         editor.putString("exerciseCategories", exerciseCategories);
+                        editor.putString("exercisesJson", exercisesJson); // Save the exercise list
                         editor.apply();
 
                         Log.d(TAG, "Plan saved: " + planName);
@@ -133,6 +139,7 @@ public class Plen_select_Activity extends AppCompatActivity {
                         Log.d(TAG, "Exercise time: " + exerciseTime);
                         Log.d(TAG, "Calories burned: " + caloriesBurned);
                         Log.d(TAG, "Exercise categories: " + exerciseCategories);
+                        Log.d(TAG, "Exercises JSON: " + exercisesJson); // Log the saved JSON
 
                         // 선택된 플랜의 운동 목록을 로그로 출력
                         for (ExerciseResponse exercise : selectedPlan.getExercises()) {
@@ -153,6 +160,7 @@ public class Plen_select_Activity extends AppCompatActivity {
             });
         }
     }
+
 
     private String getExerciseCategories(List<ExerciseResponse> exercises) {
         StringBuilder categories = new StringBuilder();
