@@ -77,8 +77,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     Log.d("LoginActivity", "Response: " + response.body().toString());
                     if ("success".equals(response.body().getStatus())) {
+                        MyApplication app = (MyApplication) getApplication();
+                        app.setUser(response.body().getUser()); // 로그인 성공 시 User 객체 설정
+
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        intent.putExtra("user", response.body().getUser());
                         startActivity(intent);
                         finish();
                     } else {

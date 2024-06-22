@@ -40,19 +40,24 @@ public class InformationActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.navigation);
         navView.setSelectedItemId(R.id.navigation_notifications);
 
+        MyApplication app = (MyApplication) getApplication();
+        User user = app.getUser();
+
         navView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
+            Intent intent;
             if (itemId == R.id.navigation_home) {
-                startActivity(new Intent(InformationActivity.this, MainActivity.class));
-                return true;
+                intent = new Intent(InformationActivity.this, MainActivity.class);
             } else if (itemId == R.id.navigation_dashboard) {
-                startActivity(new Intent(InformationActivity.this, StatisticsActivity.class));
-                return true;
+                intent = new Intent(InformationActivity.this, StatisticsActivity.class);
             } else if (itemId == R.id.navigation_notifications) {
-                startActivity(new Intent(InformationActivity.this, InformationActivity.class));
-                return true;
+                intent = new Intent(InformationActivity.this, InformationActivity.class);
+            } else {
+                return false;
             }
-            return false;
+
+            startActivity(intent);
+            return true;
         });
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -80,8 +85,6 @@ public class InformationActivity extends AppCompatActivity {
         });
 
         // 사용자 정보 설정
-        User user = (User) getIntent().getSerializableExtra("user");
-
         if (user != null) {
             nameTextView.setText(user.getName());
             heightTextView.setText(String.format("%d cm", user.getHeight()));
