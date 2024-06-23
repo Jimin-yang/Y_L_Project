@@ -15,15 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.planvoice.network.ExerciseResponse;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Type;
 import java.util.List;
 
 public class ExercisePlayActivity extends AppCompatActivity {
 
-    private static final String TAG = "ExercisePlayActivity";
+    private static final String TAG = "ExercisePlayActivity"; // TAG 변수 추가
+
     private TextView tvTimer, tvExerciseTitle, tvExerciseSubtitle, tvStartTime, tvEndTime;
     private ImageView imgExercise;
     private ImageButton btnPlay, btnBack, btnVoice;
@@ -132,21 +131,12 @@ public class ExercisePlayActivity extends AppCompatActivity {
         tvExerciseSubtitle.setText(exercise.getBodyPart());
 
         // 이미지 로드
-        String imageUrl = exercise.getImageURL();
-        if (imageUrl != null && !imageUrl.isEmpty()) {
-            Picasso.get().load(imageUrl).into(imgExercise, new Callback() {
-                @Override
-                public void onSuccess() {
-                    Log.d(TAG, "Image loaded successfully: " + imageUrl);
-                }
-
-                @Override
-                public void onError(Exception e) {
-                    Log.e(TAG, "Error loading image: " + imageUrl, e);
-                }
-            });
+        String imageName = exercise.getImageURL();
+        int imageResId = getResources().getIdentifier(imageName, "drawable", getPackageName());
+        if (imageResId != 0) {
+            imgExercise.setImageResource(imageResId);
         } else {
-            Log.e(TAG, "Image URL is empty or null");
+            Log.e(TAG, "Image not found for: " + imageName);
         }
 
         // 운동 시작 시간 및 종료 시간 초기화
