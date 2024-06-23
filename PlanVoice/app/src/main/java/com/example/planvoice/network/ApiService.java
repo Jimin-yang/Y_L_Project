@@ -28,6 +28,17 @@ public interface ApiService {
             @Field("phone") String phone
     );
 
+    @FormUrlEncoded
+    @POST("update_user.php")
+    Call<User> updateUser(
+            @Field("userId") int id,
+            @Field("newName") String newName,
+            @Field("newHeight") int newHeight,
+            @Field("newWeight") int newWeight,
+            @Field("newPhone") String newPhone,
+            @Field("newEmail") String newEmail
+    );
+
     @GET("get_plans.php")
     Call<List<ExercisePlanResponse>> getPlans();
 
@@ -36,5 +47,6 @@ public interface ApiService {
 
     @GET("search_exercises.php")
     Call<List<ExerciseResponse>> searchExercises(@Query("searchText") String searchText);
+
 
 }
