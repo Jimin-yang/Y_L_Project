@@ -1,8 +1,10 @@
 package com.example.planvoice;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -32,12 +34,16 @@ public class RoutineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_routine_list);
 
         exercisesListView = findViewById(R.id.exercises_list_view);
-        startRoutineButton = findViewById(R.id.start_routine);
+        startRoutineButton = findViewById(R.id.btn_start_routine);
 
         loadSelectedPlan();
 
-        startRoutineButton.setOnClickListener(v -> {
-            // 시작하기 버튼 클릭 시의 로직 추가
+        startRoutineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RoutineActivity.this, ExercisePlayActivity.class);
+                startActivity(intent);
+            }
         });
     }
 
