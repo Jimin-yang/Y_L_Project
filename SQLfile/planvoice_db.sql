@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- 생성 시간: 24-06-16 08:35
+-- 생성 시간: 24-06-23 11:34
 -- 서버 버전: 10.4.32-MariaDB
 -- PHP 버전: 8.2.12
 
@@ -154,7 +154,22 @@ INSERT INTO `exercise_plan_exercises` (`id`, `plan_id`, `exercise_id`) VALUES
 (27, 9, 9),
 (28, 10, 7),
 (29, 10, 8),
-(30, 10, 9);
+(30, 10, 9),
+(31, 5, 4),
+(32, 5, 5),
+(33, 5, 6),
+(34, 7, 4),
+(35, 7, 5),
+(36, 7, 6),
+(37, 10, 4),
+(38, 10, 5),
+(39, 10, 6),
+(40, 4, 4),
+(41, 4, 5),
+(42, 2, 4),
+(43, 2, 5),
+(44, 9, 4),
+(45, 9, 5);
 
 -- --------------------------------------------------------
 
@@ -228,7 +243,7 @@ ALTER TABLE `exercise_plans`
 -- 테이블의 AUTO_INCREMENT `exercise_plan_exercises`
 --
 ALTER TABLE `exercise_plan_exercises`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- 테이블의 AUTO_INCREMENT `users`

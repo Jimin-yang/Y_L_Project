@@ -4,12 +4,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.planvoice.network.ExerciseResponse;
 import com.example.planvoice.network.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
@@ -26,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private User user;
     private TextView tvWorkoutPlan, tvExerciseCount, tvExerciseTime, tvCaloriesBurned, tvCategories;
+    private Button startBTN;
+    private ImageButton menuBTN, settingBTN;
+    private BottomNavigationView navView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,14 @@ public class MainActivity extends AppCompatActivity {
         // Intent로 전달된 사용자 정보 가져오기
         user = (User) getIntent().getSerializableExtra("user");
 
-        BottomNavigationView navView = findViewById(R.id.navigation);
+        // View 초기화
+        tvWorkoutPlan = findViewById(R.id.tv_workout_plan);
+        tvExerciseCount = findViewById(R.id.tv_exercise_count);
+        tvExerciseTime = findViewById(R.id.tv_exercise_time);
+        tvCaloriesBurned = findViewById(R.id.tv_calories_burned);
+        tvCategories = findViewById(R.id.tv_categories);
+
+        navView = findViewById(R.id.navigation);
         navView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.navigation_home) {
@@ -56,50 +64,27 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
-        Button startBTN = findViewById(R.id.btn_start_workout);
+        startBTN = findViewById(R.id.btn_start_workout);
         startBTN.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, RoutineActivity.class);
             intent.putExtra("user", user);  // 사용자 정보 전달
             startActivity(intent);
         });
 
-        ImageButton menuBTN = findViewById(R.id.toolbar).findViewById(R.id.menu_icon);
+        menuBTN = findViewById(R.id.toolbar).findViewById(R.id.menu_icon);
         menuBTN.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, Exercise_list_Activity.class);
             startActivity(intent);
         });
 
-        ImageButton settingBTN = findViewById(R.id.toolbar).findViewById(R.id.settings_icon);
+        settingBTN = findViewById(R.id.toolbar).findViewById(R.id.settings_icon);
         settingBTN.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, Plen_select_Activity.class);
             intent.putExtra("user", user);  // 사용자 정보 전달
             startActivity(intent);
         });
 
-        tvWorkoutPlan = findViewById(R.id.tv_workout_plan);
-        tvExerciseCount = findViewById(R.id.tv_exercise_count);
-        tvExerciseTime = findViewById(R.id.tv_exercise_time);
-        tvCaloriesBurned = findViewById(R.id.tv_calories_burned);
-        tvCategories = findViewById(R.id.tv_categories);
-
         loadSelectedPlan();
-    }
-
-    private void saveSelectedPlan(String selectedPlan, int exerciseCount, int exerciseTime, int caloriesBurned, String exerciseCategories, List<ExerciseResponse> exercises) {
-        SharedPreferences preferences = getSharedPreferences("PlanPreferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-
-        editor.putString("selectedPlan", selectedPlan);
-        editor.putInt("exerciseCount", exerciseCount);
-        editor.putInt("exerciseTime", exerciseTime);
-        editor.putInt("caloriesBurned", caloriesBurned);
-        editor.putString("exerciseCategories", exerciseCategories);
-
-        Gson gson = new Gson();
-        String exercisesJson = gson.toJson(exercises);
-        editor.putString("exercisesJson", exercisesJson);
-
-        editor.apply();
     }
 
     private void loadSelectedPlan() {

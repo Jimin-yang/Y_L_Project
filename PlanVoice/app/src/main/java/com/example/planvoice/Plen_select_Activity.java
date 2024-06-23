@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.planvoice.network.ApiService;
@@ -17,6 +16,7 @@ import com.example.planvoice.network.ExerciseResponse;
 import com.example.planvoice.network.RetrofitClient;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +35,6 @@ public class Plen_select_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_plen_select);
 
         getSupportActionBar().setTitle("플랜 선택");
@@ -49,6 +48,7 @@ public class Plen_select_Activity extends AppCompatActivity {
         loadExercisePlans();
     }
 
+
     private void loadExercisePlans() {
         Retrofit retrofit = RetrofitClient.getClient("http://10.0.2.2:8080/planvoice/");
         ApiService apiService = retrofit.create(ApiService.class);
@@ -61,8 +61,9 @@ public class Plen_select_Activity extends AppCompatActivity {
                     List<ExercisePlanResponse> planResponses = response.body();
                     for (ExercisePlanResponse planResponse : planResponses) {
                         ExercisePlan plan = planResponse.toExercisePlan();
+                        Log.d(TAG, "Server response for plan: " + plan.getPlanName() + ", Exercises: " + new Gson().toJson(plan.getExercises()));
                         exercisePlansMap.put(plan.getPlanName(), plan);
-                        Log.d(TAG, "Loaded plan: " + plan.getPlanName());
+                        Log.d(TAG, "Loaded plan: " + plan.getPlanName() + " with exercises: " + plan.getExercises().size());
                     }
                     setupPlanButtons();
                 } else {
@@ -76,6 +77,7 @@ public class Plen_select_Activity extends AppCompatActivity {
             }
         });
     }
+
 
     private void setupPlanButtons() {
         for (Map.Entry<String, ExercisePlan> entry : exercisePlansMap.entrySet()) {
@@ -101,7 +103,6 @@ public class Plen_select_Activity extends AppCompatActivity {
             case "현재 상태 유지 플랜 (입문)": return R.id.plan_maintain_intro;
             case "현재 상태 유지 플랜 (중급)": return R.id.plan_maintain_intermediate;
             case "현재 상태 유지 플랜 (고급)": return R.id.plan_maintain_advanced;
-            case "취약 부위 보완 플랜": return R.id.plan_weakness;
             default: return 0;
         }
     }
@@ -115,43 +116,46 @@ public class Plen_select_Activity extends AppCompatActivity {
                     selectedPlanButton.setText(planName);
                     ExercisePlan selectedPlan = exercisePlansMap.get(planName);
                     if (selectedPlan != null) {
-                        int exerciseCount = selectedPlan.getExercises().size();
-                        int exerciseTime = exerciseCount * 15; // 임의로 각 운동에 15분 할당
-                        int caloriesBurned = exerciseCount * 100; // 임의로 각 운동에 100kcal 할당
-                        String exerciseCategories = getExerciseCategories(selectedPlan.getExercises());
+                        // PlanConfig를 통해 운동 개수와 예상 소모 시간을 가져옴
+                        PlanConfig.PlanDetails planDetails = PlanConfig.getPlanDetails(planName);
 
-                        // Save the exercise list as JSON
-                        Gson gson = new Gson();
-                        String exercisesJson = gson.toJson(selectedPlan.getExercises());
+                        // 전체 운동 리스트 가져오기
+                        List<ExerciseResponse> allExercises = selectedPlan.getExercises();
+                        List<ExerciseResponse> limitedExercises = new ArrayList<>();
+
+                        Log.d(TAG, "Plan: " + planName + " has total exercises: " + allExercises.size());
+
+                        // PlanConfig의 개수에 맞게 운동을 추가
+                        int exerciseCount = planDetails.exerciseCount; // 올바른 운동 개수 설정
+                        for (int i = 0; i < exerciseCount && i < allExercises.size(); i++) {
+                            limitedExercises.add(allExercises.get(i));
+                        }
+
+                        Log.d(TAG, "Limited exercises count for plan " + planName + ": " + limitedExercises.size());
 
                         SharedPreferences preferences = getSharedPreferences("PlanPreferences", MODE_PRIVATE);
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.putString("selectedPlan", planName);
-                        editor.putInt("exerciseCount", exerciseCount);
-                        editor.putInt("exerciseTime", exerciseTime);
-                        editor.putInt("caloriesBurned", caloriesBurned);
-                        editor.putString("exerciseCategories", exerciseCategories);
-                        editor.putString("exercisesJson", exercisesJson); // Save the exercise list
+                        editor.putInt("exerciseCount", limitedExercises.size());
+                        editor.putInt("exerciseTime", planDetails.estimatedTime);
+                        editor.putString("exerciseCategories", getExerciseCategories(limitedExercises));
+                        editor.putString("exercisesJson", new Gson().toJson(limitedExercises));
                         editor.apply();
 
                         Log.d(TAG, "Plan saved: " + planName);
-                        Log.d(TAG, "Exercise count: " + exerciseCount);
-                        Log.d(TAG, "Exercise time: " + exerciseTime);
-                        Log.d(TAG, "Calories burned: " + caloriesBurned);
-                        Log.d(TAG, "Exercise categories: " + exerciseCategories);
-                        Log.d(TAG, "Exercises JSON: " + exercisesJson); // Log the saved JSON
+                        Log.d(TAG, "Exercise count: " + limitedExercises.size());
+                        Log.d(TAG, "Exercise time: " + planDetails.estimatedTime);
 
                         // 선택된 플랜의 운동 목록을 로그로 출력
-                        for (ExerciseResponse exercise : selectedPlan.getExercises()) {
+                        for (ExerciseResponse exercise : limitedExercises) {
                             Log.d(TAG, "Exercise: " + exercise.getExerciseName() + ", BodyPart: " + exercise.getBodyPart());
                         }
 
+                        // 여기에서 Intent에 선택한 플랜의 이름을 추가하여 MainActivity로 전달
                         Intent resultIntent = new Intent(Plen_select_Activity.this, MainActivity.class);
                         resultIntent.putExtra("selectedPlan", planName);
-                        resultIntent.putExtra("exerciseCount", exerciseCount);
-                        resultIntent.putExtra("exerciseTime", exerciseTime);
-                        resultIntent.putExtra("caloriesBurned", caloriesBurned);
-                        resultIntent.putExtra("exerciseCategories", exerciseCategories);
+                        resultIntent.putExtra("exerciseCount", limitedExercises.size());
+                        resultIntent.putExtra("exerciseTime", planDetails.estimatedTime);
                         startActivity(resultIntent);
                     } else {
                         Log.e(TAG, "Selected plan not found: " + planName);
@@ -160,6 +164,10 @@ public class Plen_select_Activity extends AppCompatActivity {
             });
         }
     }
+
+
+
+
 
 
     private String getExerciseCategories(List<ExerciseResponse> exercises) {

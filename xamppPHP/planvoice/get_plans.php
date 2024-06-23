@@ -41,6 +41,11 @@ if ($result->num_rows > 0) {
     }
 }
 
+// 로그 출력: 각 플랜의 운동 개수 확인
+foreach ($plans as $plan_id => $plan) {
+    error_log("Plan: " . $plan["planName"] . " with exercises count: " . count($plan["exercises"]));
+}
+
 echo json_encode(array_values($plans));
 
 $conn->close();

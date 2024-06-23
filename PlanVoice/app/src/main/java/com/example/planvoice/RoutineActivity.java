@@ -48,13 +48,10 @@ public class RoutineActivity extends AppCompatActivity {
         int exerciseTime = preferences.getInt("exerciseTime", 0);
         int caloriesBurned = preferences.getInt("caloriesBurned", 0);
         String exerciseCategories = preferences.getString("exerciseCategories", "");
+        String exercisesJson = preferences.getString("exercisesJson", "");
 
         // Load the exercise list JSON
-        String exercisesJson = preferences.getString("exercisesJson", null);
-
-        if (exercisesJson != null) {
-            Log.d(TAG, "Loaded exercises JSON: " + exercisesJson); // Log the loaded JSON
-
+        if (!exercisesJson.isEmpty()) {
             Gson gson = new Gson();
             Type type = new TypeToken<List<ExerciseResponse>>() {}.getType();
             List<ExerciseResponse> exercises = gson.fromJson(exercisesJson, type);
