@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#333333"
-    tools:context=".MainActivity">
+    tools:context=".ExercisePlayActivity">
 
     <!-- 상단 뒤로가기 버튼 -->
     <ImageButton
@@ -111,8 +110,6 @@
         android:background="@drawable/button_background" />
 
     <!-- 진행 막대 -->
-
-    <!-- 시작 시간 -->
     <SeekBar
         android:id="@+id/seekbar_progress"
         android:layout_width="match_parent"
@@ -127,6 +124,7 @@
         android:progressTint="#AAAAAA"
         android:thumbTint="#AAAAAA" />
 
+    <!-- 시작 시간 -->
     <TextView
         android:id="@+id/tv_start_time"
         android:layout_width="wrap_content"
@@ -149,6 +147,18 @@
         android:text="06:20"
         android:textColor="#AAAAAA"
         android:textSize="12sp" />
+
+    <!-- 종료 버튼 -->
+    <Button
+        android:id="@+id/btn_finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_end_time"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_background"
+        android:text="종료"
+        android:textColor="#000000" />
 
     <!-- 하단 메뉴와 생략 버튼 -->
     <RelativeLayout

@@ -1,5 +1,6 @@
 package com.example.planvoice;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,11 +27,11 @@ public class ExercisePlayActivity extends AppCompatActivity {
     private TextView tvTimer, tvExerciseTitle, tvExerciseSubtitle, tvStartTime, tvEndTime;
     private ImageView imgExercise;
     private ImageButton btnPlay, btnBack, btnVoice;
-    private Button btnNext, btnPrevious, btnSkip;
+    private Button btnNext, btnPrevious, btnSkip, btnFinish;
     private SeekBar seekBarProgress;
     private List<ExerciseResponse> exerciseList;
     private int currentExerciseIndex = 0;
-    private boolean isPaused = false;
+    private boolean isPaused = true;
     private Handler handler = new Handler();
     private long totalElapsedTime = 0, exerciseElapsedTime = 0;
     private long totalStartTime, exerciseStartTime, pausedTime;
@@ -38,6 +39,9 @@ public class ExercisePlayActivity extends AppCompatActivity {
 
     private int totalExerciseTime;
     private long[] exerciseTimes;
+
+    private String selectedPlan;
+    private boolean exerciseCompleted = false; // 운동 완료 여부를 추적하는 플래그
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,7 @@ public class ExercisePlayActivity extends AppCompatActivity {
         btnNext = findViewById(R.id.btn_next);
         btnPrevious = findViewById(R.id.btn_previous);
         btnSkip = findViewById(R.id.btn_skip);
+        btnFinish = findViewById(R.id.btn_finish);
         seekBarProgress = findViewById(R.id.seekbar_progress);
 
         // 뒤로가기 버튼 클릭 이벤트
@@ -65,6 +70,7 @@ public class ExercisePlayActivity extends AppCompatActivity {
         // 운동 리스트 로드
         SharedPreferences preferences = getSharedPreferences("PlanPreferences", MODE_PRIVATE);
         String exercisesJson = preferences.getString("exercisesJson", "");
+        selectedPlan = preferences.getString("selectedPlan", "근육량 증가 추천 플랜 (초급)");
         Type exerciseListType = new TypeToken<List<ExerciseResponse>>() {}.getType();
         exerciseList = new Gson().fromJson(exercisesJson, exerciseListType);
         totalExerciseTime = preferences.getInt("exerciseTime", 30) * 60; // 총 운동 시간을 초 단위로 변환
@@ -116,15 +122,18 @@ public class ExercisePlayActivity extends AppCompatActivity {
                 resetExerciseTimer();
             } else {
                 // 마지막 운동일 경우, 운동 완료 처리
-                finish();
+                navigateToCompletionScreen();
             }
         });
+
+        // 종료 버튼 클릭 이벤트
+        btnFinish.setOnClickListener(v -> navigateToCompletionScreen());
 
         // 타이머 업데이트
         updateTimer = new Runnable() {
             @Override
             public void run() {
-                if (!isPaused) {
+                if (!isPaused && !exerciseCompleted) {
                     long currentTime = System.currentTimeMillis();
 
                     // 총 운동 시간 계산
@@ -134,6 +143,10 @@ public class ExercisePlayActivity extends AppCompatActivity {
                     // 현재 운동 시간 계산
                     exerciseElapsedTime += currentTime - exerciseStartTime;
                     exerciseStartTime = currentTime;
+
+                    // 로그 출력
+                    Log.d(TAG, "Total Elapsed Time: " + totalElapsedTime);
+                    Log.d(TAG, "Exercise Elapsed Time: " + exerciseElapsedTime);
 
                     // 총 운동 시간 표시
                     long totalMinutes = (totalElapsedTime / 1000) / 60;
@@ -145,6 +158,21 @@ public class ExercisePlayActivity extends AppCompatActivity {
                     long exerciseSeconds = (exerciseElapsedTime / 1000) % 60;
                     tvStartTime.setText(String.format("%02d:%02d", exerciseMinutes, exerciseSeconds));
                     seekBarProgress.setProgress((int) (exerciseElapsedTime / 1000));
+
+                    // 현재 운동 시간이 해당 운동 시간보다 크면 다음 운동으로 이동
+                    if (exerciseElapsedTime >= exerciseTimes[currentExerciseIndex] * 1000) { // 밀리초 단위로 변환
+                        if (currentExerciseIndex < exerciseList.size() - 1) {
+                            Log.d(TAG, "Moving to next exercise");
+                            currentExerciseIndex++;
+                            displayExercise(currentExerciseIndex);
+                            resetExerciseTimer();
+                        } else {
+                            Log.d(TAG, "Completed all exercises");
+                            handler.removeCallbacks(updateTimer);
+                            exerciseCompleted = true; // 운동 완료 플래그 설정
+                            navigateToCompletionScreen();
+                        }
+                    }
 
                     handler.postDelayed(this, 1000);
                 }
@@ -168,8 +196,9 @@ public class ExercisePlayActivity extends AppCompatActivity {
 
         // 운동 시간 초기화
         tvStartTime.setText("00:00");
-        tvEndTime.setText(String.format("%02d:%02d", exerciseTimes[index] / 60, exerciseTimes[index] % 60));
-        seekBarProgress.setMax((int) exerciseTimes[index]);
+        tvEndTime.setText(String.format("%02d:%02d", (exerciseTimes[index] / 60), (exerciseTimes[index] % 60)));
+        seekBarProgress.setMax((int) (exerciseTimes[index])); // 초 단위로 설정
+        seekBarProgress.setProgress(0);
 
         // 타이머 초기화
         resetExerciseTimer();
@@ -181,6 +210,7 @@ public class ExercisePlayActivity extends AppCompatActivity {
         handler.post(updateTimer);
         btnPlay.setImageResource(R.drawable.pause); // pause 이미지로 교체
         isPaused = false;
+        Log.d(TAG, "Exercise started");
     }
 
     private void pauseExercise() {
@@ -188,20 +218,40 @@ public class ExercisePlayActivity extends AppCompatActivity {
         pausedTime = System.currentTimeMillis();
         handler.removeCallbacks(updateTimer);
         btnPlay.setImageResource(R.drawable.play_arrow_40px); // play 이미지로 교체
+        Log.d(TAG, "Exercise paused");
     }
 
     private void resumeExercise() {
         isPaused = false;
-        totalStartTime = System.currentTimeMillis();
-        exerciseStartTime = totalStartTime;
+        long currentTime = System.currentTimeMillis();
+        long pauseDuration = currentTime - pausedTime;
+        totalStartTime = currentTime;
+        exerciseStartTime = currentTime;
         handler.post(updateTimer);
         btnPlay.setImageResource(R.drawable.pause); // pause 이미지로 교체
+        Log.d(TAG, "Exercise resumed");
     }
 
     private void resetExerciseTimer() {
         exerciseElapsedTime = 0;
         exerciseStartTime = System.currentTimeMillis();
+        totalStartTime = exerciseStartTime;
         tvStartTime.setText("00:00");
         seekBarProgress.setProgress(0);
+        Log.d(TAG, "Exercise timer reset");
     }
+
+    private void navigateToCompletionScreen() {
+        if (!exerciseCompleted) {
+            exerciseCompleted = true;
+            handler.removeCallbacks(updateTimer); // 타이머 중지
+            Intent intent = new Intent(ExercisePlayActivity.this, ExerciseCompletionActivity.class);
+            intent.putExtra("planName", selectedPlan);
+            intent.putExtra("totalTime", totalElapsedTime); // 밀리초 단위로 전달
+            startActivity(intent);
+            finish();
+            Log.d(TAG, "Navigating to completion screen");
+        }
+    }
+
 }
