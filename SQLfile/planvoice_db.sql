@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- 생성 시간: 24-06-23 11:34
+-- 생성 시간: 24-06-23 19:03
 -- 서버 버전: 10.4.32-MariaDB
 -- PHP 버전: 8.2.12
 
@@ -199,6 +199,33 @@ INSERT INTO `users` (`id`, `username`, `password`, `name`, `age`, `height`, `wei
 (2, 'testtest', 'testtoto', 'james', 24, 177, 76, '남자', 'james@naver.com', '01043434343'),
 (3, 'test1', 'test11', 'Amy', 20, 170, 60, '남자', 'Amy@gmail.com', '01012345678');
 
+-- --------------------------------------------------------
+
+--
+-- 테이블 구조 `user_exercise_data`
+--
+
+CREATE TABLE `user_exercise_data` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `plan_name` varchar(255) NOT NULL,
+  `total_time` int(11) NOT NULL,
+  `chest_time` int(11) DEFAULT 0,
+  `shoulder_time` int(11) DEFAULT 0,
+  `arm_time` int(11) DEFAULT 0,
+  `back_time` int(11) DEFAULT 0,
+  `leg_time` int(11) DEFAULT 0,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 테이블의 덤프 데이터 `user_exercise_data`
+--
+
+INSERT INTO `user_exercise_data` (`id`, `user_id`, `plan_name`, `total_time`, `chest_time`, `shoulder_time`, `arm_time`, `back_time`, `leg_time`, `timestamp`) VALUES
+(1, 3, '근육량 증가 추천 플랜 (초급)', 8, 4, 0, 2, 0, 0, '2024-06-23 16:52:40'),
+(2, 3, '근육량 증가 추천 플랜 (초급)', 11, 6, 0, 3, 0, 0, '2024-06-23 17:01:03');
+
 --
 -- 덤프된 테이블의 인덱스
 --
@@ -230,6 +257,13 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 테이블의 인덱스 `user_exercise_data`
+--
+ALTER TABLE `user_exercise_data`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- 덤프된 테이블의 AUTO_INCREMENT
 --
 
@@ -252,6 +286,12 @@ ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- 테이블의 AUTO_INCREMENT `user_exercise_data`
+--
+ALTER TABLE `user_exercise_data`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- 덤프된 테이블의 제약사항
 --
 
@@ -261,6 +301,12 @@ ALTER TABLE `users`
 ALTER TABLE `exercise_plan_exercises`
   ADD CONSTRAINT `exercise_plan_exercises_ibfk_1` FOREIGN KEY (`plan_id`) REFERENCES `exercise_plans` (`id`),
   ADD CONSTRAINT `exercise_plan_exercises_ibfk_2` FOREIGN KEY (`exercise_id`) REFERENCES `exercise` (`ID`);
+
+--
+-- 테이블의 제약사항 `user_exercise_data`
+--
+ALTER TABLE `user_exercise_data`
+  ADD CONSTRAINT `user_exercise_data_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

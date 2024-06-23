@@ -94,7 +94,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:padding="16dp"
-                            android:weightSum="3">
+                            android:weightSum="2">
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -136,25 +136,6 @@
                                     android:textColor="@color/white" />
                             </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/baseline_local_fire_department_24" />
-
-                                <TextView
-                                    android:id="@+id/tv_calories_burned"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="709kcal"
-                                    android:textColor="@color/white" />
-                            </LinearLayout>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 

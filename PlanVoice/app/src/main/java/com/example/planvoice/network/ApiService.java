@@ -39,6 +39,19 @@ public interface ApiService {
             @Field("newEmail") String newEmail
     );
 
+    @FormUrlEncoded
+    @POST("save_exercise_data.php")
+    Call<Void> saveExerciseData(
+            @Field("user_id") int userId,
+            @Field("plan_name") String planName,
+            @Field("total_time") int totalTime,
+            @Field("chest_time") int chestTime,
+            @Field("shoulder_time") int shoulderTime,
+            @Field("arm_time") int armTime,
+            @Field("back_time") int backTime,
+            @Field("leg_time") int legTime
+    );
+
     @GET("get_plans.php")
     Call<List<ExercisePlanResponse>> getPlans();
 
@@ -47,6 +60,4 @@ public interface ApiService {
 
     @GET("search_exercises.php")
     Call<List<ExerciseResponse>> searchExercises(@Query("searchText") String searchText);
-
-
 }

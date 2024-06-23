@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private User user;
-    private TextView tvWorkoutPlan, tvExerciseCount, tvExerciseTime, tvCaloriesBurned, tvCategories;
+    private TextView tvWorkoutPlan, tvExerciseCount, tvExerciseTime, tvCategories;
     private Button startBTN;
     private ImageButton menuBTN, settingBTN;
     private BottomNavigationView navView;
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         tvWorkoutPlan = findViewById(R.id.tv_workout_plan);
         tvExerciseCount = findViewById(R.id.tv_exercise_count);
         tvExerciseTime = findViewById(R.id.tv_exercise_time);
-        tvCaloriesBurned = findViewById(R.id.tv_calories_burned);
+        // tvCaloriesBurned = findViewById(R.id.tv_calories_burned); // 주석 처리
         tvCategories = findViewById(R.id.tv_categories);
 
         navView = findViewById(R.id.navigation);
@@ -92,19 +92,19 @@ public class MainActivity extends AppCompatActivity {
         String selectedPlan = preferences.getString("selectedPlan", "근육량 증가 추천 플랜 (초급)");
         int exerciseCount = preferences.getInt("exerciseCount", 0);
         int exerciseTime = preferences.getInt("exerciseTime", 0);
-        int caloriesBurned = preferences.getInt("caloriesBurned", 0);
+        // int caloriesBurned = preferences.getInt("caloriesBurned", 0); // 주석 처리
         String exerciseCategories = preferences.getString("exerciseCategories", "");
 
         tvWorkoutPlan.setText(selectedPlan);
         tvExerciseCount.setText(exerciseCount + "개의 운동");
         tvExerciseTime.setText(exerciseTime + "분");
-        tvCaloriesBurned.setText(caloriesBurned + "kcal");
+        // tvCaloriesBurned.setText(caloriesBurned + "kcal"); // 주석 처리
         tvCategories.setText("운동부위: " + exerciseCategories);
 
         Log.d(TAG, "Loaded plan: " + selectedPlan);
         Log.d(TAG, "Exercise count: " + exerciseCount);
         Log.d(TAG, "Exercise time: " + exerciseTime);
-        Log.d(TAG, "Calories burned: " + caloriesBurned);
+        // Log.d(TAG, "Calories burned: " + caloriesBurned); // 주석 처리
         Log.d(TAG, "Exercise categories: " + exerciseCategories);
     }
 }

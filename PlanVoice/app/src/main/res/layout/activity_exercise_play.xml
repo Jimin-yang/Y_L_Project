@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#333333"
-    tools:context=".ExercisePlayActivity">
+    tools:context=".MainActivity">
 
     <!-- 상단 뒤로가기 버튼 -->
     <ImageButton
@@ -52,15 +52,7 @@
         android:textSize="14sp" />
 
     <!-- 음성 버튼 -->
-    <ImageButton
-        android:id="@+id/btn_voice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/mic_40px" />
+
 
     <!-- 운동 이미지 -->
     <ImageView
@@ -153,41 +145,10 @@
         android:id="@+id/btn_finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_end_time"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/button_background"
         android:text="종료"
         android:textColor="#000000" />
-
-    <!-- 하단 메뉴와 생략 버튼 -->
-    <RelativeLayout
-        android:id="@+id/bottom_menu"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="16dp"
-        android:background="#555555">
-
-        <ImageButton
-            android:id="@+id/btn_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_menu" />
-
-        <Button
-            android:id="@+id/btn_skip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/button_background"
-            android:text="생략"
-            android:textColor="#000000" />
-    </RelativeLayout>
-
 </RelativeLayout>
