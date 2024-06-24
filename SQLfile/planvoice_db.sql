@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- 생성 시간: 24-06-23 19:03
+-- Host: 127.0.0.1
+-- 생성 시간: 24-06-24 18:45
 -- 서버 버전: 10.4.32-MariaDB
 -- PHP 버전: 8.2.12
 
@@ -197,7 +197,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `age`, `height`, `weight`, `gender`, `email`, `phone`) VALUES
 (1, 'testuser', 'testpassword', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (2, 'testtest', 'testtoto', 'james', 24, 177, 76, '남자', 'james@naver.com', '01043434343'),
-(3, 'test1', 'test11', 'Amy', 20, 170, 60, '남자', 'Amy@gmail.com', '01012345678');
+(3, 'test1', 'test11', 'Amy', 20, 170, 60, '남자', 'Amy@gmail.com', '01012345678'),
+(4, '1111', '1111', '김부천', 23, 176, 87, '남자', 'ww@naver.com', '01044445555');
 
 -- --------------------------------------------------------
 
@@ -223,8 +224,22 @@ CREATE TABLE `user_exercise_data` (
 --
 
 INSERT INTO `user_exercise_data` (`id`, `user_id`, `plan_name`, `total_time`, `chest_time`, `shoulder_time`, `arm_time`, `back_time`, `leg_time`, `timestamp`) VALUES
-(1, 3, '근육량 증가 추천 플랜 (초급)', 8, 4, 0, 2, 0, 0, '2024-06-23 16:52:40'),
-(2, 3, '근육량 증가 추천 플랜 (초급)', 11, 6, 0, 3, 0, 0, '2024-06-23 17:01:03');
+(1, 3, '근육량 증가 추천 플랜 (초급)', 8, 4, 1, 2, 0, 1, '2024-06-10 07:52:40'),
+(2, 3, '체지방 감소 추천 플랜 (중급)', 11, 6, 2, 3, 1, 2, '2024-06-11 08:01:03'),
+(3, 3, '근육량 증가 추천 플랜 (입문)', 10, 5, 1, 2, 0, 2, '2024-06-12 07:52:40'),
+(4, 3, '근육량 증가 추천 플랜 (중급)', 9, 3, 2, 3, 1, 1, '2024-06-13 08:01:03'),
+(5, 3, '근육량 증가 추천 플랜 (고급)', 12, 6, 1, 4, 0, 1, '2024-06-14 07:52:40'),
+(6, 3, '체지방 감소 추천 플랜 (입문)', 8, 4, 1, 2, 0, 2, '2024-06-15 08:01:03'),
+(7, 3, '체지방 감소 추천 플랜 (고급)', 10, 5, 2, 3, 1, 1, '2024-06-16 07:52:40'),
+(8, 3, '현재 상태 유지 플랜 (입문)', 9, 3, 1, 2, 0, 2, '2024-06-17 08:01:03'),
+(9, 3, '현재 상태 유지 플랜 (중급)', 11, 6, 2, 3, 1, 1, '2024-06-18 07:52:40'),
+(10, 3, '현재 상태 유지 플랜 (고급)', 10, 5, 1, 4, 0, 1, '2024-06-19 08:01:03'),
+(11, 3, '근육량 증가 추천 플랜 (초급)', 8, 4, 1, 2, 0, 1, '2024-06-20 07:52:40'),
+(12, 3, '체지방 감소 추천 플랜 (중급)', 11, 6, 2, 3, 1, 2, '2024-06-21 08:01:03'),
+(13, 3, '근육량 증가 추천 플랜 (입문)', 10, 5, 1, 2, 0, 2, '2024-06-22 07:52:40'),
+(14, 3, '근육량 증가 추천 플랜 (중급)', 9, 3, 2, 3, 1, 1, '2024-06-23 08:01:03'),
+(15, 3, '근육량 증가 추천 플랜 (입문)', 10, 5, 0, 2, 0, 1, '2024-06-24 07:52:40'),
+(16, 3, '근육량 증가 추천 플랜 (중급)', 9, 3, 0, 3, 0, 3, '2024-06-25 08:01:03');
 
 --
 -- 덤프된 테이블의 인덱스
@@ -283,13 +298,7 @@ ALTER TABLE `exercise_plan_exercises`
 -- 테이블의 AUTO_INCREMENT `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- 테이블의 AUTO_INCREMENT `user_exercise_data`
---
-ALTER TABLE `user_exercise_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 덤프된 테이블의 제약사항
@@ -301,12 +310,6 @@ ALTER TABLE `user_exercise_data`
 ALTER TABLE `exercise_plan_exercises`
   ADD CONSTRAINT `exercise_plan_exercises_ibfk_1` FOREIGN KEY (`plan_id`) REFERENCES `exercise_plans` (`id`),
   ADD CONSTRAINT `exercise_plan_exercises_ibfk_2` FOREIGN KEY (`exercise_id`) REFERENCES `exercise` (`ID`);
-
---
--- 테이블의 제약사항 `user_exercise_data`
---
-ALTER TABLE `user_exercise_data`
-  ADD CONSTRAINT `user_exercise_data_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -45,7 +45,7 @@ public class InformationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        //EdgeToEdge.enable(this);
         setContentView(R.layout.activity_information);
 
         tabLayout = findViewById(R.id.tabs);
@@ -144,7 +144,6 @@ public class InformationActivity extends AppCompatActivity {
         builder.setTitle("사용자 정보 변경");
         View viewInflated = getLayoutInflater().inflate(R.layout.dialog_update_user, null);
         builder.setView(viewInflated);
-
         EditText editName = viewInflated.findViewById(R.id.edit_name);
         EditText editHeight = viewInflated.findViewById(R.id.edit_height);
         EditText editWeight = viewInflated.findViewById(R.id.edit_weight);
@@ -161,7 +160,7 @@ public class InformationActivity extends AppCompatActivity {
             editEmail.setText(user.getEmail());
         }
 
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String newName = editName.getText().toString().trim();
@@ -177,7 +176,7 @@ public class InformationActivity extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();

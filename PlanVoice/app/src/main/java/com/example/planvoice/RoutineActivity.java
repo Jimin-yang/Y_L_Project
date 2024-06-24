@@ -30,9 +30,9 @@ public class RoutineActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        //EdgeToEdge.enable(this);
         setContentView(R.layout.activity_routine_list);
-
+        setTitle("Exercise Plan");
         exercisesListView = findViewById(R.id.exercises_list_view);
         startRoutineButton = findViewById(R.id.btn_start_routine);
 

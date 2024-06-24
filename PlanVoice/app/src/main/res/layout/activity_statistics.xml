@@ -5,13 +5,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StatisticsActivity">
+    tools:context=".StatisticsActivity"
+    >
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+
         tools:ignore="MissingConstraints">
 
         <androidx.appcompat.widget.Toolbar
@@ -69,6 +71,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:text="02.22 ~ 02.28"
+                        android:id="@+id/date_date"
                         android:textColor="@color/white" />
 
                 </LinearLayout>
@@ -98,7 +101,7 @@
                             android:layout_margin="3dp"
                             android:background="@drawable/button_text_rounded_background"
                             android:checked="true"
-                            android:text="칼로리"
+                            android:text="운동 균형도"
                             android:textColor="@color/white" />
 
                         <Button
@@ -121,7 +124,7 @@
                         <com.github.mikephil.charting.charts.BarChart
                             android:id="@+id/chart1"
                             android:layout_width="match_parent"
-                            android:layout_height="200dp"
+                            android:layout_height="300dp"
                             android:layout_marginBottom="20dp" />
 
                     </LinearLayout>
@@ -136,57 +139,15 @@
                         <com.github.mikephil.charting.charts.BarChart
                             android:id="@+id/chart2"
                             android:layout_width="match_parent"
-                            android:layout_height="200dp"
+                            android:layout_height="300dp"
                             android:layout_marginBottom="20dp" />
 
                     </LinearLayout>
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="10dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="운동 균형도"
-                        android:textColor="@color/white" />
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="380dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/layout_rounded_background"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:radius="10dp">
-
-                    <LinearLayout
-                        android:id="@+id/chatLL3"
-                        android:layout_width="340dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp">
-
-                        <com.github.mikephil.charting.charts.BarChart
-                            android:id="@+id/chart3"
-                            android:layout_width="match_parent"
-                            android:layout_height="230dp"
-                            android:layout_marginBottom="20dp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp" />
             </LinearLayout>
 
 
@@ -197,11 +158,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/background"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
+        android:layout_alignParentBottom="true"
         app:menu="@menu/navigation_menu"/>
 
 
