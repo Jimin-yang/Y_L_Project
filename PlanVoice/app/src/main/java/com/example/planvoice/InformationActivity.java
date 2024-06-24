@@ -1,11 +1,12 @@
 package com.example.planvoice;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -26,13 +27,10 @@ import com.google.android.material.tabs.TabLayout;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
-
 import android.widget.Toast;
-
 
 import retrofit2.Callback;
 import retrofit2.Response;
-
 
 public class InformationActivity extends AppCompatActivity {
     private TabLayout tabLayout;
@@ -41,11 +39,12 @@ public class InformationActivity extends AppCompatActivity {
     private TextView weightTextView;
     private TextView phoneTextView;
     private TextView emailTextView;
+    private Button logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //EdgeToEdge.enable(this);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_information);
 
         tabLayout = findViewById(R.id.tabs);
@@ -54,6 +53,16 @@ public class InformationActivity extends AppCompatActivity {
         weightTextView = findViewById(R.id.weightText);
         phoneTextView = findViewById(R.id.phoneText);
         emailTextView = findViewById(R.id.emailText);
+        logoutButton = findViewById(R.id.btn_logout);
+
+        logoutButton.setOnClickListener(v -> {
+            MyApplication app = (MyApplication) getApplication();
+            app.setUser(null);  // 사용자 정보 초기화
+            Intent intent = new Intent(InformationActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // 이전 액티비티 스택을 모두 제거
+            startActivity(intent);
+            finish();
+        });
 
         ImageButton renameButton = findViewById(R.id.user_rename);
         renameButton.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +71,6 @@ public class InformationActivity extends AppCompatActivity {
                 showRenameDialog();
             }
         });
-
 
         BottomNavigationView navView = findViewById(R.id.navigation);
         navView.setSelectedItemId(R.id.navigation_notifications);
@@ -116,6 +124,7 @@ public class InformationActivity extends AppCompatActivity {
             setUserInformation(user);
         }
     }
+
     private void setUserInformation(User user) {
         nameTextView.setText(user.getName());
         heightTextView.setText(String.format("%d cm", user.getHeight()));
@@ -139,6 +148,7 @@ public class InformationActivity extends AppCompatActivity {
                 break;
         }
     }
+
     private void showRenameDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("사용자 정보 변경");
@@ -170,7 +180,6 @@ public class InformationActivity extends AppCompatActivity {
                 String newEmail = editEmail.getText().toString().trim();
                 int userId = user.getId();
 
-
                 // Update user information
                 updateUser(userId, newName, newHeight, newWeight, newPhone, newEmail);
             }
@@ -187,7 +196,7 @@ public class InformationActivity extends AppCompatActivity {
     }
 
     private void updateUser(int id, String newName, int newHeight, int newWeight, String newPhone, String newEmail) {
-        Retrofit retrofit = RetrofitClient.getClient("http://10.0.2.2:8080/planvoice/");
+        Retrofit retrofit = RetrofitClient.getClient("http://10.0.2.2:8080/planvoice/"); // 10.0.2.2
         ApiService apiService = retrofit.create(ApiService.class);
 
         Call<User> call = apiService.updateUser(id, newName, newHeight, newWeight, newPhone, newEmail);
@@ -220,7 +229,4 @@ public class InformationActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 }
