@@ -140,7 +140,7 @@ public class StatisticsActivity extends AppCompatActivity {
         entries.add(new BarEntry(3, bodyPartData.get("back")));
         entries.add(new BarEntry(4, bodyPartData.get("leg")));
 
-        BarDataSet barDataSet = new BarDataSet(entries, "부위별 운동 시간");
+        BarDataSet barDataSet = new BarDataSet(entries, "부위별 운동 시간(분)");
         barDataSet.setColor(Color.WHITE);
         barDataSet.setValueTextColor(Color.WHITE);
 
@@ -166,7 +166,7 @@ public class StatisticsActivity extends AppCompatActivity {
             entries.add(new BarEntry(index++, entry.getValue()));
         }
 
-        BarDataSet barDataSet = new BarDataSet(entries, "날짜별 운동 총 시간");
+        BarDataSet barDataSet = new BarDataSet(entries, "날짜별 운동 총 시간(분)");
         barDataSet.setColor(Color.WHITE);
         barDataSet.setValueTextColor(Color.WHITE);
 
