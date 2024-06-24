@@ -108,7 +108,7 @@ public class ExerciseCompletionActivity extends AppCompatActivity {
         }
 
         // API 서비스 초기화
-        Retrofit retrofit = RetrofitClient.getClient("http://10.0.2.2:8080/planvoice/");
+        Retrofit retrofit = RetrofitClient.getClient("http://192.168.210.51:8080/planvoice/");
         apiService = retrofit.create(ApiService.class);
 
         // 운동 정보 표시

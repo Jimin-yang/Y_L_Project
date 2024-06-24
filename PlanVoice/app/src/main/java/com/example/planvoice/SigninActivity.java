@@ -44,7 +44,7 @@ public class SigninActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        //EdgeToEdge.enable(this);
         setContentView(R.layout.activity_signin);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -64,7 +64,7 @@ public class SigninActivity extends AppCompatActivity {
         phoneEditText = findViewById(R.id.phoneText);
         Button registerButton = findViewById(R.id.registerButton);
 
-        Retrofit retrofit = RetrofitClient.getClient("http://10.0.2.2:8080/planvoice/");
+        Retrofit retrofit = RetrofitClient.getClient("http://192.168.210.51:8080/planvoice/");
         apiService = retrofit.create(ApiService.class);
 
         registerButton.setOnClickListener(new View.OnClickListener() {

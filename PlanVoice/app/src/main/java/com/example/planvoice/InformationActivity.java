@@ -196,7 +196,7 @@ public class InformationActivity extends AppCompatActivity {
     }
 
     private void updateUser(int id, String newName, int newHeight, int newWeight, String newPhone, String newEmail) {
-        Retrofit retrofit = RetrofitClient.getClient("http://10.0.2.2:8080/planvoice/"); // 10.0.2.2
+        Retrofit retrofit = RetrofitClient.getClient("http://192.168.210.51:8080/planvoice/"); // 10.0.2.2
         ApiService apiService = retrofit.create(ApiService.class);
 
         Call<User> call = apiService.updateUser(id, newName, newHeight, newWeight, newPhone, newEmail);

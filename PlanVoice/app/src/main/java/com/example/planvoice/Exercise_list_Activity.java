@@ -40,7 +40,7 @@ public class Exercise_list_Activity extends AppCompatActivity {
         exerciseListView = findViewById(R.id.exercise_view);
         ImageButton searchButton = findViewById(R.id.exercise_searchButton);
 
-        retrofit = RetrofitClient.getClient("http://10.0.2.2:8080/planvoice/");
+        retrofit = RetrofitClient.getClient("http://192.168.210.51:8080/planvoice/");
         apiService = retrofit.create(ApiService.class);
 
         // 초기 운동 데이터 로드 (예: 전체 운동 목록)

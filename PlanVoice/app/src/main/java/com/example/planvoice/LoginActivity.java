@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         Button signinBTN = findViewById(R.id.signinButton);
         Button loginBTN = findViewById(R.id.loginButton);
 
-        Retrofit retrofit = RetrofitClient.getClient("http://10.0.2.2:8080/planvoice/");//192.168.210.51 , 10.0.2.2
+        Retrofit retrofit = RetrofitClient.getClient("http://192.168.210.51:8080/planvoice/");//192.168.210.51 , 10.0.2.2
         apiService = retrofit.create(ApiService.class);
 
         signinBTN.setOnClickListener(new View.OnClickListener() {

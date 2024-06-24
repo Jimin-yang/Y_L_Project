@@ -94,7 +94,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
         // Retrofit 설정
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/planvoice/") // PHP 파일이 위치한 서버 URL
+                .baseUrl("http://192.168.210.51:8080/planvoice/") // PHP 파일이 위치한 서버 URL
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

@@ -50,7 +50,7 @@ public class Plen_select_Activity extends AppCompatActivity {
 
 
     private void loadExercisePlans() {
-        Retrofit retrofit = RetrofitClient.getClient("http://10.0.2.2:8080/planvoice/");
+        Retrofit retrofit = RetrofitClient.getClient("http://192.168.210.51:8080/planvoice/");
         ApiService apiService = retrofit.create(ApiService.class);
 
         Call<List<ExercisePlanResponse>> call = apiService.getPlans();
